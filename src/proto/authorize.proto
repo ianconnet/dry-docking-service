@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package authorize;
+
+// Service definition for authorization
+service AuthorizeService {
+  // Authorize user based on account status, user type, and permissions
+  rpc AuthorizeUser (AuthorizeRequest) returns (AuthorizeResponse) {}
+}
+
+// Request message containing user authorization details
+message AuthorizeRequest {
+  AccountStatus accountStatus = 1;
+  UserType userType = 2;
+  IAM iam = 3;
+  string userId = 4;
+  string groupPolicyId = 5;
+  GroupPolicy menu = 6;
+}
+
+// Response message containing authorization status
+message AuthorizeResponse {
+  int32 statusCode = 1;
+  optional string message = 2;
+}
+
+// Account status enum
+enum AccountStatus {
+  SUSPENDED = 0;
+  REVIEWING = 1;
+  APPROVED = 2;
+  REJECTED = 3;
+}
+
+// Account status enum
+enum IAM {
+  ROOT = 0;
+  SUBUSER = 1;
+}
+
+// User type enum
+enum UserType {
+  VESSEL_OWNER = 0;
+  CHARTER = 1;
+  TRUCKER = 2;
+  CLEARANCE_AGENT = 3;
+  STORAGE_TERMINAL = 4;
+  STORAGE_WAREHOUSE = 5;
+  CARGO_INSURANCE = 6;
+}
+
+// Group policy message
+enum GroupPolicy {
+    ACCOUNTS = 0;
+    DATA = 1; 
+    WIZARD = 2;
+    FINANCE = 3;
+    PROFILE = 4;
+    REQUESTS = 5;
+    FIND = 6; 
+    BOOKINGS = 7;
+    DRIVERS = 8; 
+    FLEET = 9; 
+    WORKORDERS = 10;
+    FIND_CARGO = 11;
+    FIND_LOAD = 12;
+    FIND_CLEARANCE = 13;
+    FIND_STORAGE_TERMINAL= 14;
+    FIND_STORAGE_WAREHOUSE= 15;
+    STOWAGE_VESSEL_DETAILS = 16;  
+    STOWAGE_VESSEL_VOYAGE = 17;  
+    PERFORMANCE_MAIN_ENGINE = 18;  
+    PERFORMANCE_AUXILIARY_ENGINE = 19; 
+} 

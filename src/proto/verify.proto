@@ -1,0 +1,52 @@
+// verify/verify.proto
+syntax = "proto3";
+
+package verify;
+
+// Define the Verify service
+service VerifyService {
+  rpc Verify(VerifyRequest) returns (VerifyResponse) {}
+}
+
+// Request message with a token
+message VerifyRequest {
+  string token = 1;
+}
+
+// Response message with the payload
+message VerifyResponse {
+  Payload payload = 1;
+  bool success = 2; // Indicates if verification succeeded
+  string error = 3; // Optional error message if verification fails
+}
+
+// Payload message matching TPayload
+message Payload {
+  AccountStatus accountStatus = 1;
+  UserType userType = 2;
+  string iam = 3; // "ROOT" or "SUBUSER"
+  string userId = 4;
+  string groupPolicyId = 5;
+  int64 iat = 6; // Issued at (Unix timestamp)
+  int64 exp = 7; // Expiration (Unix timestamp)
+}
+
+// Enum for AccountStatus
+enum AccountStatus {
+  REVIEWING = 0;
+  APPROVED = 1;
+  SUSPENDED = 2;
+  REJECTED = 3;
+}
+
+// Enum for UserType
+enum UserType {
+  TRUCKER = 0;
+  STORAGE_TERMINAL = 1;
+  STORAGE_WAREHOUSE = 2;
+  CLEARANCE_AGENT = 3;
+  CARGO_INSURANCE = 4;
+  VESSEL_OWNER = 5;
+  CHARTER = 6;
+  ADMIN = 7;
+}

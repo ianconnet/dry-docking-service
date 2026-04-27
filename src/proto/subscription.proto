@@ -1,0 +1,57 @@
+// subscription/subscription.proto
+syntax = "proto3";
+
+package subscription;
+
+// Define the SubscriptionCheck service
+service SubscriptionCheckService {
+  rpc CheckAccess(SubscriptionCheckRequest) returns (SubscriptionCheckResponse) {}
+}
+
+// Request message with user payload and module
+message SubscriptionCheckRequest {
+  SubscribedService module = 1; // The module name the user wants to access (SubscribedService enum as string)
+  UserPayload user = 2; // User payload
+}
+
+// Response message with authorization result
+message SubscriptionCheckResponse {
+  bool isAuthorized = 1;
+  string message = 2; // Optional message explaining why access is denied
+}
+
+// UserPayload message matching TPayload structure
+message UserPayload {
+  AccountStatus accountStatus = 1;
+  UserType userType = 2;
+  string iam = 3; // "ROOT" or "SUBUSER"
+  string userId = 4;
+  string groupPolicyId = 5;
+  int64 iat = 6; // Issued at (Unix timestamp)
+  int64 exp = 7; // Expiration (Unix timestamp)
+} 
+
+// Enum for AccountStatus
+enum AccountStatus {
+  REVIEWING = 0;
+  APPROVED = 1;
+  SUSPENDED = 2;
+  REJECTED = 3;
+}
+
+// Enum for UserType
+enum UserType {
+  TRUCKER = 0;
+  STORAGE_TERMINAL = 1;
+  STORAGE_WAREHOUSE = 2;
+  CLEARANCE_AGENT = 3;
+  CARGO_INSURANCE = 4;
+  VESSEL_OWNER = 5;
+  CHARTER = 6;
+  ADMIN = 7;
+}
+// Enum for Subscribed Service
+enum SubscribedService {
+  STOWAGE = 0;
+  ENGINE_PERFORMANCE = 1;
+}
