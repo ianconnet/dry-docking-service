@@ -31,6 +31,8 @@ export enum UserType {
   VESSEL_OWNER = 5,
   CHARTER = 6,
   ADMIN = 7,
+  CONTRACTOR = 8,
+  YARD_OWNER = 9,
   UNRECOGNIZED = -1,
 }
 

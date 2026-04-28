@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AUTHORIZE_PACKAGE_NAME } from 'src/proto-interfaces/authorize';
+import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
@@ -16,5 +17,6 @@ import { AUTHORIZE_PACKAGE_NAME } from 'src/proto-interfaces/authorize';
       },
     ]),
   ],
+  controllers: [AuthController],
 })
 export class AuthModule {}

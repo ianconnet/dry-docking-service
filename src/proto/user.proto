@@ -1,0 +1,61 @@
+// user/user.proto
+syntax = "proto3";
+
+package user;
+
+// Define the User service
+service UserService {
+  rpc Login(LoginRequest) returns (LoginResponse) {}
+  rpc GetUserById(GetUserByIdRequest) returns (UserResponse) {}
+}
+
+// Request message for login
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+  UserType userType = 3;
+}
+
+// Response message for login
+message LoginResponse {
+  string token = 1;
+  UserResponse user = 2;
+}
+
+// Request message to get user by ID
+message GetUserByIdRequest {
+  string userId = 1;
+}
+
+// User info message
+message UserResponse {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  UserType userType = 4;
+  AccountStatus accountStatus = 5;
+  string iam = 6;
+  int64 createdAt = 7; // Unix timestamp (creationDate)
+}
+
+// Enum for UserType
+enum UserType {
+  TRUCKER = 0;
+  STORAGE_TERMINAL = 1;
+  STORAGE_WAREHOUSE = 2;
+  CLEARANCE_AGENT = 3;
+  CARGO_INSURANCE = 4;
+  VESSEL_OWNER = 5;
+  CHARTER = 6;
+  ADMIN = 7;
+  CONTRACTOR = 8;
+  YARD_OWNER = 9;
+}
+
+// Enum for AccountStatus
+enum AccountStatus {
+  REVIEWING = 0;
+  APPROVED = 1;
+  SUSPENDED = 2;
+  REJECTED = 3;
+}

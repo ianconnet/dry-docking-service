@@ -35,6 +35,8 @@ export enum UserType {
   STORAGE_TERMINAL = 4,
   STORAGE_WAREHOUSE = 5,
   CARGO_INSURANCE = 6,
+  CONTRACTOR = 7,
+  YARD_OWNER = 8,
   UNRECOGNIZED = -1,
 }
 

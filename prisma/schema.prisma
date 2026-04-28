@@ -12,403 +12,64 @@ datasource db {
   provider = "postgresql"
 }
 
-//////////////////////////////
-// ENUMS
-//////////////////////////////
-
-enum PartyRoleType {
-  SHIP_OWNER
-  TECH_MANAGER
-  YARD_OWNER
-  MAIN_CONTRACTOR
-  SUB_CONTRACTOR
-  SHIP_AGENT
-  SURVEYOR
-  CLASS_SOCIETY
-  FLAG_AUTHORITY
-  SERVICE_PROVIDER
-}
-
-enum DrydockStatus {
-  RFQ
-  YARD_SELECTION
-  PLANNING
-  IN_DOCK
-  COMPLETED
-  CLOSED
-}
-
-enum RFQType {
-  YARD
-  MAIN_CONTRACTOR
-  SUB_CONTRACTOR
-  SERVICE
-}
-
-enum ContractType {
-  YARD
-  MAIN_CONTRACTOR
-  SUB_CONTRACT
-  SERVICE_ORDER
-}
-
-enum WorkCategory {
-  HULL
-  MACHINERY
-  ELECTRICAL
-  COATING
-  VALVE
-  STEEL_RENEWAL
-  SURVEY
-}
-
-enum AgentTaskType {
-  PORT_CLEARANCE
-  IMMIGRATION
-  CUSTOMS
-  SPARES_DELIVERY
-  CREW_CHANGE
-  SERVICE_ACCESS
-}
-
-enum Status {
-  PENDING
-  IN_PROGRESS
-  COMPLETED
-  APPROVED
-  REJECTED
-}
-
-//////////////////////////////
-// PARTIES (Unified Model)
-//////////////////////////////
-
-model Party {
-  id        String  @id @default(uuid())
-  legalName String
-  country   String?
-  taxId     String?
-  rating    Float?
-
-  roles PartyRole[]
-
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
-  vessels            Vessel[]
-  drydockEventActors DrydockEventActor[]
-  yards              Yard[]
-  rfqresponses       RFQResponse[]
-  contracts          Contract[]
-  surveys            Survey[]
-}
-
-model PartyRole {
-  id      String @id @default(uuid())
-  party   Party  @relation(fields: [partyId], references: [id])
-  partyId String
-
-  roleType PartyRoleType
-
-  @@unique([partyId, roleType])
-}
-
-//////////////////////////////
-// VESSEL
-//////////////////////////////
-
-model Vessel {
-  id        String  @id @default(uuid())
-  imoNumber String  @unique
-  name      String
-  type      String?
-  dwt       Float?
-
-  ownerId String
-  owner   Party  @relation(fields: [ownerId], references: [id])
-
-  drydocks DrydockEvent[]
-}
-
-//////////////////////////////
-// DRYDOCK EVENT
-//////////////////////////////
-
-model DrydockEvent {
-  id       String @id @default(uuid())
-  vessel   Vessel @relation(fields: [vesselId], references: [id])
-  vesselId String
-
-  status       DrydockStatus
-  plannedStart DateTime?
-  plannedEnd   DateTime?
-
-  port     String?
-  dockType String?
-
-  actors       DrydockEventActor[]
-  rfqs         RFQ[]
-  contracts    Contract[]
-  workPackages WorkPackage[]
-  surveys      Survey[]
-  agentTasks   AgentTask[]
-
-  createdAt DateTime @default(now())
-}
-
-model DrydockEventActor {
-  id        String       @id @default(uuid())
-  drydock   DrydockEvent @relation(fields: [drydockId], references: [id])
-  drydockId String
-
-  party   Party  @relation(fields: [partyId], references: [id])
-  partyId String
-
-  roleType PartyRoleType
-}
-
-//////////////////////////////
-// MARKETPLACE (YARDS)
-//////////////////////////////
-
 model Yard {
-  id       String @id @default(uuid())
-  name     String
-  location String
-  ownerId  String
-  owner    Party  @relation(fields: [ownerId], references: [id])
-
-  capabilities   Json?
-  availabilities YardAvailability[]
+  id          String     @id @default(uuid())
+  name        String
+  location    String
+  description String?
+  published   Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  rfqs        RFQ[]
+  contracts   Contract[]
 }
 
-model YardAvailability {
-  id     String @id @default(uuid())
-  yard   Yard   @relation(fields: [yardId], references: [id])
-  yardId String
-
-  startDate DateTime
-  endDate   DateTime
-  dockType  String?
+enum RFQStatus {
+  pending
+  approved
+  rejected
 }
-
-//////////////////////////////
-// RFQ
-//////////////////////////////
 
 model RFQ {
-  id        String       @id @default(uuid())
-  drydock   DrydockEvent @relation(fields: [drydockId], references: [id])
-  drydockId String
-
-  type   RFQType
-  status Status
-
-  items     RFQItem[]
-  responses RFQResponse[]
-
+  id        String   @id @default(uuid())
+  yardId    String
+  requester String
+  details   String
+  status    String   @default("pending")
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  yard Yard @relation(fields: [yardId], references: [id])
 }
 
-model RFQItem {
-  id    String @id @default(uuid())
-  rfq   RFQ    @relation(fields: [rfqId], references: [id])
-  rfqId String
-
-  category    WorkCategory
-  description String
-  quantity    Float?
+enum ContractStatus {
+  pending
+  active
+  completed
+  cancelled
 }
-
-model RFQResponse {
-  id    String @id @default(uuid())
-  rfq   RFQ    @relation(fields: [rfqId], references: [id])
-  rfqId String
-
-  party   Party  @relation(fields: [partyId], references: [id])
-  partyId String
-
-  totalPrice Float?
-  currency   String?
-
-  items RFQResponseItem[]
-}
-
-model RFQResponseItem {
-  id         String      @id @default(uuid())
-  response   RFQResponse @relation(fields: [responseId], references: [id])
-  responseId String
-
-  rfqItemId String
-  unitPrice Float?
-}
-
-//////////////////////////////
-// CONTRACTS
-//////////////////////////////
 
 model Contract {
-  id        String       @id @default(uuid())
-  drydock   DrydockEvent @relation(fields: [drydockId], references: [id])
-  drydockId String
+  id          String   @id @default(uuid())
+  yardId      String
+  details     String
+  shipAgentId String
+  status      String   @default("pending")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  party   Party  @relation(fields: [partyId], references: [id])
-  partyId String
-
-  type ContractType
-
-  parentId String?
-  parent   Contract?  @relation("ContractHierarchy", fields: [parentId], references: [id])
-  children Contract[] @relation("ContractHierarchy")
-
-  value    Float?
-  currency String?
-
-  workItems    ContractWorkItem[]
-  invoices     Invoice[]
-  claims       Claim[]
-  workPackages WorkPackage[]
+  yard     Yard      @relation(fields: [yardId], references: [id])
+  invoices Invoice[]
 }
-
-model ContractWorkItem {
-  id         String   @id @default(uuid())
-  contract   Contract @relation(fields: [contractId], references: [id])
-  contractId String
-
-  rfqItemId  String
-  agreedQty  Float?
-  agreedRate Float?
-}
-
-//////////////////////////////
-// PLANNING & EXECUTION
-//////////////////////////////
-
-model WorkPackage {
-  id        String       @id @default(uuid())
-  drydock   DrydockEvent @relation(fields: [drydockId], references: [id])
-  drydockId String
-
-  contract   Contract @relation(fields: [contractId], references: [id])
-  contractId String
-
-  category    WorkCategory
-  description String
-
-  requiresClass Boolean
-
-  schedules WorkSchedule[]
-  progress  DailyProgress[]
-  defects   Defect[]
-}
-
-model WorkSchedule {
-  id   String      @id @default(uuid())
-  wp   WorkPackage @relation(fields: [wpId], references: [id])
-  wpId String
-
-  plannedStart DateTime?
-  plannedEnd   DateTime?
-  actualStart  DateTime?
-  actualEnd    DateTime?
-}
-
-model DailyProgress {
-  id   String      @id @default(uuid())
-  wp   WorkPackage @relation(fields: [wpId], references: [id])
-  wpId String
-
-  date    DateTime
-  percent Float
-  remarks String?
-}
-
-model Defect {
-  id   String      @id @default(uuid())
-  wp   WorkPackage @relation(fields: [wpId], references: [id])
-  wpId String
-
-  severity    String?
-  description String
-}
-
-//////////////////////////////
-// SURVEYS
-//////////////////////////////
-
-model Survey {
-  id        String       @id @default(uuid())
-  drydock   DrydockEvent @relation(fields: [drydockId], references: [id])
-  drydockId String
-
-  type       String
-  surveyorId String
-  surveyor   Party  @relation(fields: [surveyorId], references: [id])
-
-  findings SurveyFinding[]
-}
-
-model SurveyFinding {
-  id       String @id @default(uuid())
-  survey   Survey @relation(fields: [surveyId], references: [id])
-  surveyId String
-
-  description String
-  wpId        String?
-}
-
-model Certificate {
-  id         String    @id @default(uuid())
-  vesselId   String
-  issuedBy   String
-  issueDate  DateTime
-  expiryDate DateTime?
-}
-
-//////////////////////////////
-// AGENT TASKS (GATING)
-//////////////////////////////
-
-model AgentTask {
-  id        String       @id @default(uuid())
-  drydock   DrydockEvent @relation(fields: [drydockId], references: [id])
-  drydockId String
-
-  type     AgentTaskType
-  status   Status
-  deadline DateTime?
-}
-
-//////////////////////////////
-// FINANCE
-//////////////////////////////
 
 model Invoice {
   id         String   @id @default(uuid())
-  contract   Contract @relation(fields: [contractId], references: [id])
   contractId String
+  amount     Float
+  dueDate    DateTime
+  status     String   @default("pending")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  amount   Float
-  currency String
-  status   Status
-
-  payments Payment[]
-}
-
-model Payment {
-  id        String  @id @default(uuid())
-  invoice   Invoice @relation(fields: [invoiceId], references: [id])
-  invoiceId String
-
-  amount Float
-  paidAt DateTime
-}
-
-model Claim {
-  id         String   @id @default(uuid())
-  contract   Contract @relation(fields: [contractId], references: [id])
-  contractId String
-
-  type   String
-  amount Float
-  status Status
+  contract Contract @relation(fields: [contractId], references: [id])
 }

@@ -18,9 +18,10 @@ import { SurveyModule } from './modules/survey/survey.module';
 import { FinanceModule } from './modules/finance/finance.module';
 import { NotificationModule } from './modules/notification/notification.module';
 import { AuditModule } from './modules/audit/audit.module';
+import { PrismaModule } from './shared/prisma/prisma.module';
 
 @Module({
-  imports: [AuthModule, UserModule, PartyModule, VesselModule, DrydockModule, AgentModule, YardModule, MarketplaceModule, RfqModule, ContractModule, PlanningModule, ExecutionModule, SurveyModule, FinanceModule, NotificationModule, AuditModule],
+  imports: [AuthModule, UserModule, PartyModule, VesselModule, DrydockModule, AgentModule, YardModule, MarketplaceModule, RfqModule, ContractModule, PlanningModule, ExecutionModule, SurveyModule, FinanceModule, NotificationModule, AuditModule, PrismaModule],
   controllers: [AppController],
   providers: [AppService, AuthService],
 })
