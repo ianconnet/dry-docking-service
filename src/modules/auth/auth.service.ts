@@ -11,6 +11,9 @@ import {
 import {
   LoginRequest,
   LoginResponse,
+  SignupRequest,
+  SignupResponse,
+  USER_PACKAGE_NAME,
   USER_SERVICE_NAME,
   UserServiceClient,
 } from 'src/proto-interfaces/user';
@@ -20,14 +23,18 @@ export class AuthService implements OnModuleInit {
   private authorizeService!: AuthorizeServiceClient;
   private userAuthService!: UserServiceClient;
 
-  constructor(@Inject(AUTHORIZE_PACKAGE_NAME) private client: ClientGrpc) {}
+  constructor(
+    @Inject(AUTHORIZE_PACKAGE_NAME) private authorizeClient: ClientGrpc,
+    @Inject(USER_PACKAGE_NAME) private userClient: ClientGrpc,
+  ) {}
 
   onModuleInit() {
-    this.authorizeService = this.client.getService<AuthorizeServiceClient>(
-      AUTHORIZE_SERVICE_NAME,
-    );
+    this.authorizeService =
+      this.authorizeClient.getService<AuthorizeServiceClient>(
+        AUTHORIZE_SERVICE_NAME,
+      );
     this.userAuthService =
-      this.client.getService<UserServiceClient>(USER_SERVICE_NAME);
+      this.userClient.getService<UserServiceClient>(USER_SERVICE_NAME);
   }
 
   authorize(request: AuthorizeRequest): Promise<AuthorizeResponse> {
@@ -36,5 +43,9 @@ export class AuthService implements OnModuleInit {
 
   login(request: LoginRequest): Promise<LoginResponse> {
     return firstValueFrom(this.userAuthService.login(request));
+  }
+
+  signup(request: SignupRequest): Promise<SignupResponse> {
+    return firstValueFrom(this.userAuthService.signup(request));
   }
 }

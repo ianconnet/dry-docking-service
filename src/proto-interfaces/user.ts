@@ -54,6 +54,20 @@ export interface GetUserByIdRequest {
   userId: string;
 }
 
+/** Request message for signup */
+export interface SignupRequest {
+  name: string;
+  email: string;
+  password: string;
+  userType: UserType;
+}
+
+/** Response message for signup */
+export interface SignupResponse {
+  success: boolean;
+  message: string;
+}
+
 /** User info message */
 export interface UserResponse {
   id: string;
@@ -74,6 +88,8 @@ export interface UserServiceClient {
   login(request: LoginRequest): Observable<LoginResponse>;
 
   getUserById(request: GetUserByIdRequest): Observable<UserResponse>;
+
+  signup(request: SignupRequest): Observable<SignupResponse>;
 }
 
 /** Define the User service */
@@ -82,11 +98,13 @@ export interface UserServiceController {
   login(request: LoginRequest): Promise<LoginResponse> | Observable<LoginResponse> | LoginResponse;
 
   getUserById(request: GetUserByIdRequest): Promise<UserResponse> | Observable<UserResponse> | UserResponse;
+
+  signup(request: SignupRequest): Promise<SignupResponse> | Observable<SignupResponse> | SignupResponse;
 }
 
 export function UserServiceControllerMethods() {
   return function (constructor: Function) {
-    const grpcMethods: string[] = ["login", "getUserById"];
+    const grpcMethods: string[] = ["login", "getUserById", "signup"];
     for (const method of grpcMethods) {
       const descriptor: any = Reflect.getOwnPropertyDescriptor(constructor.prototype, method);
       GrpcMethod("UserService", method)(constructor.prototype[method], method, descriptor);

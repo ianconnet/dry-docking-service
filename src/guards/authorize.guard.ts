@@ -66,6 +66,8 @@ export class AuthorizeGuard implements CanActivate {
       throw new UnauthorizedException(response.message ?? 'Unauthorized');
     }
 
+    (request as Request & { user: JwtPayload }).user = payload;
+
     return true;
   }
 

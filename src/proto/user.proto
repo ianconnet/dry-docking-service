@@ -7,6 +7,7 @@ package user;
 service UserService {
   rpc Login(LoginRequest) returns (LoginResponse) {}
   rpc GetUserById(GetUserByIdRequest) returns (UserResponse) {}
+  rpc Signup(SignupRequest) returns (SignupResponse) {}
 }
 
 // Request message for login
@@ -25,6 +26,20 @@ message LoginResponse {
 // Request message to get user by ID
 message GetUserByIdRequest {
   string userId = 1;
+}
+
+// Request message for signup
+message SignupRequest {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+  UserType userType = 4;
+}
+
+// Response message for signup
+message SignupResponse {
+  bool success = 1;
+  string message = 2;
 }
 
 // User info message
