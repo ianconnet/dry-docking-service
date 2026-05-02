@@ -22,26 +22,114 @@ model Yard {
   publisher   String
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
-  rfqs        RFQ[]
   contracts   Contract[]
+  rfqs        RFQ[]
 }
 
-enum RFQStatus {
-  pending
-  approved
-  rejected
+enum DockingType {
+  DRY_DOCK
+  FLOATING_DOCK
+  SLIPWAY
+  AFLOAT
+  OTHER
+}
+
+enum WorkCategory {
+  HULL
+  STEEL_STRUCTURE
+  MECHANICAL
+  ELECTRICAL
+  PIPING
+  DECK_EQUIPMENT
+  ACCOMMODATION
+  PAINTING
+  PROPULSION
+  ANCHORING
+  OTHER
+}
+
+/**
+ * CLASS = 'CLASS',
+ * FLAG = 'FLAG',
+ * P_AND_I = 'P_AND_I',
+ * HULL = 'HULL',
+ * UNDERWATER = 'UNDERWATER',
+ * SPECIAL = 'SPECIAL',
+ */
+
+enum SurveyType {
+  CLASS
+  FLAG
+  P_AND_I
+  HULL
+  UNDERWATER
+  SPECIAL
 }
 
 model RFQ {
-  id        String   @id @default(uuid())
-  yardId    String
-  requester String
-  details   String
-  status    String   @default("pending")
+  id String @id @default(uuid())
+
+  // Vessel Snapshot
+  vesselId   String
+  vesselName String
+  imoNumber  String
+  vesselType String?
+
+  yardId String
+  yard   Yard   @relation(fields: [yardId], references: [id])
+
+  loa   Float?
+  beam  Float?
+  draft Float?
+  dwt   Float?
+
+  classSociety String?
+
+  // Docking Context
+  dockingType       DockingType
+  preferredStart    DateTime
+  flexibilityDays   Int?
+  estimatedDuration Int?
+
+  // Relationships
+  workItems RFQWorkItem[]
+  surveys   RFQSurvey[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  yard Yard @relation(fields: [yardId], references: [id])
+  @@index([imoNumber])
+}
+
+model RFQWorkItem {
+  id    String @id @default(uuid())
+  rfq   RFQ    @relation(fields: [rfqId], references: [id])
+  rfqId String
+
+  category    WorkCategory
+  description String
+
+  estimatedQty Float?
+  uom          String?
+
+  isKnownDefect Boolean @default(false)
+
+  createdAt DateTime @default(now())
+
+  @@index([rfqId])
+}
+
+model RFQSurvey {
+  id    String @id @default(uuid())
+  rfq   RFQ    @relation(fields: [rfqId], references: [id])
+  rfqId String
+
+  type      SurveyType
+  mandatory Boolean    @default(true)
+
+  notes String?
+
+  @@index([rfqId])
 }
 
 enum ContractStatus {

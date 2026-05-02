@@ -50,6 +50,16 @@ export type Yard = Prisma.YardModel
  */
 export type RFQ = Prisma.RFQModel
 /**
+ * Model RFQWorkItem
+ * 
+ */
+export type RFQWorkItem = Prisma.RFQWorkItemModel
+/**
+ * Model RFQSurvey
+ * 
+ */
+export type RFQSurvey = Prisma.RFQSurveyModel
+/**
  * Model Contract
  * 
  */

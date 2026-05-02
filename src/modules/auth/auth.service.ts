@@ -15,6 +15,7 @@ import {
   SignupResponse,
   USER_PACKAGE_NAME,
   USER_SERVICE_NAME,
+  UserResponse,
   UserServiceClient,
 } from 'src/proto-interfaces/user';
 
@@ -42,10 +43,34 @@ export class AuthService implements OnModuleInit {
   }
 
   login(request: LoginRequest): Promise<LoginResponse> {
-    return firstValueFrom(this.userAuthService.login(request));
+    return firstValueFrom(this.userAuthService.login(request)).then((res) => ({
+      ...res,
+      user: res.user ? this.mapUser(res.user) : res.user,
+    }));
   }
 
   signup(request: SignupRequest): Promise<SignupResponse> {
     return firstValueFrom(this.userAuthService.signup(request));
+  }
+
+  getUserById(userId: string) {
+    try {
+      return firstValueFrom(this.userAuthService.getUserById({ userId })).then(
+        (user) => this.mapUser(user),
+      );
+    } catch (error) {
+      console.error('Error fetching user by ID:', error);
+      return null;
+    }
+  }
+
+  private mapUser(user: UserResponse) {
+    const mapedUser = {
+      ...user,
+      userType: user.userType,
+      userDetails: user.userDetails || {},
+    };
+    console.log('Mapped User:', mapedUser, ' actual user:', user);
+    return mapedUser;
   }
 }

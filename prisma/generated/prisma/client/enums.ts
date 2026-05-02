@@ -9,13 +9,44 @@
 * 🟢 You can import this file directly.
 */
 
-export const RFQStatus = {
-  pending: 'pending',
-  approved: 'approved',
-  rejected: 'rejected'
+export const DockingType = {
+  DRY_DOCK: 'DRY_DOCK',
+  FLOATING_DOCK: 'FLOATING_DOCK',
+  SLIPWAY: 'SLIPWAY',
+  AFLOAT: 'AFLOAT',
+  OTHER: 'OTHER'
 } as const
 
-export type RFQStatus = (typeof RFQStatus)[keyof typeof RFQStatus]
+export type DockingType = (typeof DockingType)[keyof typeof DockingType]
+
+
+export const WorkCategory = {
+  HULL: 'HULL',
+  STEEL_STRUCTURE: 'STEEL_STRUCTURE',
+  MECHANICAL: 'MECHANICAL',
+  ELECTRICAL: 'ELECTRICAL',
+  PIPING: 'PIPING',
+  DECK_EQUIPMENT: 'DECK_EQUIPMENT',
+  ACCOMMODATION: 'ACCOMMODATION',
+  PAINTING: 'PAINTING',
+  PROPULSION: 'PROPULSION',
+  ANCHORING: 'ANCHORING',
+  OTHER: 'OTHER'
+} as const
+
+export type WorkCategory = (typeof WorkCategory)[keyof typeof WorkCategory]
+
+
+export const SurveyType = {
+  CLASS: 'CLASS',
+  FLAG: 'FLAG',
+  P_AND_I: 'P_AND_I',
+  HULL: 'HULL',
+  UNDERWATER: 'UNDERWATER',
+  SPECIAL: 'SPECIAL'
+} as const
+
+export type SurveyType = (typeof SurveyType)[keyof typeof SurveyType]
 
 
 export const ContractStatus = {

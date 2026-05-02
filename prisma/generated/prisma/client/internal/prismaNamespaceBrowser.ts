@@ -53,6 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Yard: 'Yard',
   RFQ: 'RFQ',
+  RFQWorkItem: 'RFQWorkItem',
+  RFQSurvey: 'RFQSurvey',
   Contract: 'Contract',
   Invoice: 'Invoice'
 } as const
@@ -89,15 +91,50 @@ export type YardScalarFieldEnum = (typeof YardScalarFieldEnum)[keyof typeof Yard
 
 export const RFQScalarFieldEnum = {
   id: 'id',
+  vesselId: 'vesselId',
+  vesselName: 'vesselName',
+  imoNumber: 'imoNumber',
+  vesselType: 'vesselType',
   yardId: 'yardId',
-  requester: 'requester',
-  details: 'details',
-  status: 'status',
+  loa: 'loa',
+  beam: 'beam',
+  draft: 'draft',
+  dwt: 'dwt',
+  classSociety: 'classSociety',
+  dockingType: 'dockingType',
+  preferredStart: 'preferredStart',
+  flexibilityDays: 'flexibilityDays',
+  estimatedDuration: 'estimatedDuration',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type RFQScalarFieldEnum = (typeof RFQScalarFieldEnum)[keyof typeof RFQScalarFieldEnum]
+
+
+export const RFQWorkItemScalarFieldEnum = {
+  id: 'id',
+  rfqId: 'rfqId',
+  category: 'category',
+  description: 'description',
+  estimatedQty: 'estimatedQty',
+  uom: 'uom',
+  isKnownDefect: 'isKnownDefect',
+  createdAt: 'createdAt'
+} as const
+
+export type RFQWorkItemScalarFieldEnum = (typeof RFQWorkItemScalarFieldEnum)[keyof typeof RFQWorkItemScalarFieldEnum]
+
+
+export const RFQSurveyScalarFieldEnum = {
+  id: 'id',
+  rfqId: 'rfqId',
+  type: 'type',
+  mandatory: 'mandatory',
+  notes: 'notes'
+} as const
+
+export type RFQSurveyScalarFieldEnum = (typeof RFQSurveyScalarFieldEnum)[keyof typeof RFQSurveyScalarFieldEnum]
 
 
 export const ContractScalarFieldEnum = {

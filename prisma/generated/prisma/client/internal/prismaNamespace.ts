@@ -386,6 +386,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Yard: 'Yard',
   RFQ: 'RFQ',
+  RFQWorkItem: 'RFQWorkItem',
+  RFQSurvey: 'RFQSurvey',
   Contract: 'Contract',
   Invoice: 'Invoice'
 } as const
@@ -403,7 +405,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "yard" | "rFQ" | "contract" | "invoice"
+    modelProps: "yard" | "rFQ" | "rFQWorkItem" | "rFQSurvey" | "contract" | "invoice"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -552,6 +554,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.RFQCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.RFQCountAggregateOutputType> | number
+        }
+      }
+    }
+    RFQWorkItem: {
+      payload: Prisma.$RFQWorkItemPayload<ExtArgs>
+      fields: Prisma.RFQWorkItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RFQWorkItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQWorkItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RFQWorkItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQWorkItemPayload>
+        }
+        findFirst: {
+          args: Prisma.RFQWorkItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQWorkItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RFQWorkItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQWorkItemPayload>
+        }
+        findMany: {
+          args: Prisma.RFQWorkItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQWorkItemPayload>[]
+        }
+        create: {
+          args: Prisma.RFQWorkItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQWorkItemPayload>
+        }
+        createMany: {
+          args: Prisma.RFQWorkItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RFQWorkItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQWorkItemPayload>[]
+        }
+        delete: {
+          args: Prisma.RFQWorkItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQWorkItemPayload>
+        }
+        update: {
+          args: Prisma.RFQWorkItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQWorkItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.RFQWorkItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RFQWorkItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RFQWorkItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQWorkItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.RFQWorkItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQWorkItemPayload>
+        }
+        aggregate: {
+          args: Prisma.RFQWorkItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRFQWorkItem>
+        }
+        groupBy: {
+          args: Prisma.RFQWorkItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RFQWorkItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RFQWorkItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RFQWorkItemCountAggregateOutputType> | number
+        }
+      }
+    }
+    RFQSurvey: {
+      payload: Prisma.$RFQSurveyPayload<ExtArgs>
+      fields: Prisma.RFQSurveyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RFQSurveyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQSurveyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RFQSurveyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQSurveyPayload>
+        }
+        findFirst: {
+          args: Prisma.RFQSurveyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQSurveyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RFQSurveyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQSurveyPayload>
+        }
+        findMany: {
+          args: Prisma.RFQSurveyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQSurveyPayload>[]
+        }
+        create: {
+          args: Prisma.RFQSurveyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQSurveyPayload>
+        }
+        createMany: {
+          args: Prisma.RFQSurveyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RFQSurveyCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQSurveyPayload>[]
+        }
+        delete: {
+          args: Prisma.RFQSurveyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQSurveyPayload>
+        }
+        update: {
+          args: Prisma.RFQSurveyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQSurveyPayload>
+        }
+        deleteMany: {
+          args: Prisma.RFQSurveyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RFQSurveyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RFQSurveyUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQSurveyPayload>[]
+        }
+        upsert: {
+          args: Prisma.RFQSurveyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQSurveyPayload>
+        }
+        aggregate: {
+          args: Prisma.RFQSurveyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRFQSurvey>
+        }
+        groupBy: {
+          args: Prisma.RFQSurveyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RFQSurveyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RFQSurveyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RFQSurveyCountAggregateOutputType> | number
         }
       }
     }
@@ -758,15 +908,50 @@ export type YardScalarFieldEnum = (typeof YardScalarFieldEnum)[keyof typeof Yard
 
 export const RFQScalarFieldEnum = {
   id: 'id',
+  vesselId: 'vesselId',
+  vesselName: 'vesselName',
+  imoNumber: 'imoNumber',
+  vesselType: 'vesselType',
   yardId: 'yardId',
-  requester: 'requester',
-  details: 'details',
-  status: 'status',
+  loa: 'loa',
+  beam: 'beam',
+  draft: 'draft',
+  dwt: 'dwt',
+  classSociety: 'classSociety',
+  dockingType: 'dockingType',
+  preferredStart: 'preferredStart',
+  flexibilityDays: 'flexibilityDays',
+  estimatedDuration: 'estimatedDuration',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type RFQScalarFieldEnum = (typeof RFQScalarFieldEnum)[keyof typeof RFQScalarFieldEnum]
+
+
+export const RFQWorkItemScalarFieldEnum = {
+  id: 'id',
+  rfqId: 'rfqId',
+  category: 'category',
+  description: 'description',
+  estimatedQty: 'estimatedQty',
+  uom: 'uom',
+  isKnownDefect: 'isKnownDefect',
+  createdAt: 'createdAt'
+} as const
+
+export type RFQWorkItemScalarFieldEnum = (typeof RFQWorkItemScalarFieldEnum)[keyof typeof RFQWorkItemScalarFieldEnum]
+
+
+export const RFQSurveyScalarFieldEnum = {
+  id: 'id',
+  rfqId: 'rfqId',
+  type: 'type',
+  mandatory: 'mandatory',
+  notes: 'notes'
+} as const
+
+export type RFQSurveyScalarFieldEnum = (typeof RFQSurveyScalarFieldEnum)[keyof typeof RFQSurveyScalarFieldEnum]
 
 
 export const ContractScalarFieldEnum = {
@@ -875,6 +1060,20 @@ export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMode
 
 
 /**
+ * Reference to a field of type 'DockingType'
+ */
+export type EnumDockingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DockingType'>
+    
+
+
+/**
+ * Reference to a field of type 'DockingType[]'
+ */
+export type ListEnumDockingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DockingType[]'>
+    
+
+
+/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -885,6 +1084,34 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
+ * Reference to a field of type 'WorkCategory'
+ */
+export type EnumWorkCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkCategory'>
+    
+
+
+/**
+ * Reference to a field of type 'WorkCategory[]'
+ */
+export type ListEnumWorkCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkCategory[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SurveyType'
+ */
+export type EnumSurveyTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyType'>
+    
+
+
+/**
+ * Reference to a field of type 'SurveyType[]'
+ */
+export type ListEnumSurveyTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyType[]'>
     
 
 /**
@@ -999,6 +1226,8 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   yard?: Prisma.YardOmit
   rFQ?: Prisma.RFQOmit
+  rFQWorkItem?: Prisma.RFQWorkItemOmit
+  rFQSurvey?: Prisma.RFQSurveyOmit
   contract?: Prisma.ContractOmit
   invoice?: Prisma.InvoiceOmit
 }

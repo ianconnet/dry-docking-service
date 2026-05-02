@@ -10,6 +10,8 @@
  */
 export type * from './models/Yard.js'
 export type * from './models/RFQ.js'
+export type * from './models/RFQWorkItem.js'
+export type * from './models/RFQSurvey.js'
 export type * from './models/Contract.js'
 export type * from './models/Invoice.js'
 export type * from './commonInputTypes.js'

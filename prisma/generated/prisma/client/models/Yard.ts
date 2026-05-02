@@ -206,8 +206,8 @@ export type YardWhereInput = {
   publisher?: Prisma.StringFilter<"Yard"> | string
   createdAt?: Prisma.DateTimeFilter<"Yard"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Yard"> | Date | string
-  rfqs?: Prisma.RFQListRelationFilter
   contracts?: Prisma.ContractListRelationFilter
+  rfqs?: Prisma.RFQListRelationFilter
 }
 
 export type YardOrderByWithRelationInput = {
@@ -219,8 +219,8 @@ export type YardOrderByWithRelationInput = {
   publisher?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  rfqs?: Prisma.RFQOrderByRelationAggregateInput
   contracts?: Prisma.ContractOrderByRelationAggregateInput
+  rfqs?: Prisma.RFQOrderByRelationAggregateInput
 }
 
 export type YardWhereUniqueInput = Prisma.AtLeast<{
@@ -235,8 +235,8 @@ export type YardWhereUniqueInput = Prisma.AtLeast<{
   publisher?: Prisma.StringFilter<"Yard"> | string
   createdAt?: Prisma.DateTimeFilter<"Yard"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Yard"> | Date | string
-  rfqs?: Prisma.RFQListRelationFilter
   contracts?: Prisma.ContractListRelationFilter
+  rfqs?: Prisma.RFQListRelationFilter
 }, "id">
 
 export type YardOrderByWithAggregationInput = {
@@ -276,8 +276,8 @@ export type YardCreateInput = {
   publisher: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  rfqs?: Prisma.RFQCreateNestedManyWithoutYardInput
   contracts?: Prisma.ContractCreateNestedManyWithoutYardInput
+  rfqs?: Prisma.RFQCreateNestedManyWithoutYardInput
 }
 
 export type YardUncheckedCreateInput = {
@@ -289,8 +289,8 @@ export type YardUncheckedCreateInput = {
   publisher: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  rfqs?: Prisma.RFQUncheckedCreateNestedManyWithoutYardInput
   contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutYardInput
+  rfqs?: Prisma.RFQUncheckedCreateNestedManyWithoutYardInput
 }
 
 export type YardUpdateInput = {
@@ -302,8 +302,8 @@ export type YardUpdateInput = {
   publisher?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  rfqs?: Prisma.RFQUpdateManyWithoutYardNestedInput
   contracts?: Prisma.ContractUpdateManyWithoutYardNestedInput
+  rfqs?: Prisma.RFQUpdateManyWithoutYardNestedInput
 }
 
 export type YardUncheckedUpdateInput = {
@@ -315,8 +315,8 @@ export type YardUncheckedUpdateInput = {
   publisher?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  rfqs?: Prisma.RFQUncheckedUpdateManyWithoutYardNestedInput
   contracts?: Prisma.ContractUncheckedUpdateManyWithoutYardNestedInput
+  rfqs?: Prisma.RFQUncheckedUpdateManyWithoutYardNestedInput
 }
 
 export type YardCreateManyInput = {
@@ -568,13 +568,13 @@ export type YardUncheckedUpdateWithoutContractsInput = {
  */
 
 export type YardCountOutputType = {
-  rfqs: number
   contracts: number
+  rfqs: number
 }
 
 export type YardCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  rfqs?: boolean | YardCountOutputTypeCountRfqsArgs
   contracts?: boolean | YardCountOutputTypeCountContractsArgs
+  rfqs?: boolean | YardCountOutputTypeCountRfqsArgs
 }
 
 /**
@@ -590,15 +590,15 @@ export type YardCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * YardCountOutputType without action
  */
-export type YardCountOutputTypeCountRfqsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.RFQWhereInput
+export type YardCountOutputTypeCountContractsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContractWhereInput
 }
 
 /**
  * YardCountOutputType without action
  */
-export type YardCountOutputTypeCountContractsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ContractWhereInput
+export type YardCountOutputTypeCountRfqsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RFQWhereInput
 }
 
 
@@ -611,8 +611,8 @@ export type YardSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   publisher?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  rfqs?: boolean | Prisma.Yard$rfqsArgs<ExtArgs>
   contracts?: boolean | Prisma.Yard$contractsArgs<ExtArgs>
+  rfqs?: boolean | Prisma.Yard$rfqsArgs<ExtArgs>
   _count?: boolean | Prisma.YardCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["yard"]>
 
@@ -651,8 +651,8 @@ export type YardSelectScalar = {
 
 export type YardOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "location" | "description" | "published" | "publisher" | "createdAt" | "updatedAt", ExtArgs["result"]["yard"]>
 export type YardInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  rfqs?: boolean | Prisma.Yard$rfqsArgs<ExtArgs>
   contracts?: boolean | Prisma.Yard$contractsArgs<ExtArgs>
+  rfqs?: boolean | Prisma.Yard$rfqsArgs<ExtArgs>
   _count?: boolean | Prisma.YardCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type YardIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -661,8 +661,8 @@ export type YardIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $YardPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Yard"
   objects: {
-    rfqs: Prisma.$RFQPayload<ExtArgs>[]
     contracts: Prisma.$ContractPayload<ExtArgs>[]
+    rfqs: Prisma.$RFQPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1067,8 +1067,8 @@ readonly fields: YardFieldRefs;
  */
 export interface Prisma__YardClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  rfqs<T extends Prisma.Yard$rfqsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Yard$rfqsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RFQPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   contracts<T extends Prisma.Yard$contractsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Yard$contractsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  rfqs<T extends Prisma.Yard$rfqsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Yard$rfqsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RFQPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1499,30 +1499,6 @@ export type YardDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * Yard.rfqs
- */
-export type Yard$rfqsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the RFQ
-   */
-  select?: Prisma.RFQSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the RFQ
-   */
-  omit?: Prisma.RFQOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.RFQInclude<ExtArgs> | null
-  where?: Prisma.RFQWhereInput
-  orderBy?: Prisma.RFQOrderByWithRelationInput | Prisma.RFQOrderByWithRelationInput[]
-  cursor?: Prisma.RFQWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.RFQScalarFieldEnum | Prisma.RFQScalarFieldEnum[]
-}
-
-/**
  * Yard.contracts
  */
 export type Yard$contractsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1544,6 +1520,30 @@ export type Yard$contractsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.ContractScalarFieldEnum | Prisma.ContractScalarFieldEnum[]
+}
+
+/**
+ * Yard.rfqs
+ */
+export type Yard$rfqsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RFQ
+   */
+  select?: Prisma.RFQSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RFQ
+   */
+  omit?: Prisma.RFQOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RFQInclude<ExtArgs> | null
+  where?: Prisma.RFQWhereInput
+  orderBy?: Prisma.RFQOrderByWithRelationInput | Prisma.RFQOrderByWithRelationInput[]
+  cursor?: Prisma.RFQWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RFQScalarFieldEnum | Prisma.RFQScalarFieldEnum[]
 }
 
 /**

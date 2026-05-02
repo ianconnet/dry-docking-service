@@ -3,6 +3,8 @@ syntax = "proto3";
 
 package user;
 
+import "google/protobuf/struct.proto";
+
 // Define the User service
 service UserService {
   rpc Login(LoginRequest) returns (LoginResponse) {}
@@ -33,7 +35,10 @@ message SignupRequest {
   string name = 1;
   string email = 2;
   string password = 3;
-  UserType userType = 4;
+  string company = 4;
+  string phone = 5;
+  string iam = 6; // Identity and Access Management role
+  UserType userType = 7;
 }
 
 // Response message for signup
@@ -48,7 +53,7 @@ message UserResponse {
   string name = 2;
   string email = 3;
   UserType userType = 4;
-  AccountStatus accountStatus = 5;
+  google.protobuf.Struct userDetails = 5;
   string iam = 6;
   int64 createdAt = 7; // Unix timestamp (creationDate)
 }
