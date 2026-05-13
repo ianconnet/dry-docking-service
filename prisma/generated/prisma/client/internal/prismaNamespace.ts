@@ -389,7 +389,9 @@ export const ModelName = {
   RFQWorkItem: 'RFQWorkItem',
   RFQSurvey: 'RFQSurvey',
   Contract: 'Contract',
-  Invoice: 'Invoice'
+  contractRequest: 'contractRequest',
+  Invoice: 'Invoice',
+  RFQResponse: 'RFQResponse'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -405,7 +407,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "yard" | "rFQ" | "rFQWorkItem" | "rFQSurvey" | "contract" | "invoice"
+    modelProps: "yard" | "rFQ" | "rFQWorkItem" | "rFQSurvey" | "contract" | "contractRequest" | "invoice" | "rFQResponse"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -779,6 +781,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    contractRequest: {
+      payload: Prisma.$contractRequestPayload<ExtArgs>
+      fields: Prisma.contractRequestFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.contractRequestFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$contractRequestPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.contractRequestFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$contractRequestPayload>
+        }
+        findFirst: {
+          args: Prisma.contractRequestFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$contractRequestPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.contractRequestFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$contractRequestPayload>
+        }
+        findMany: {
+          args: Prisma.contractRequestFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$contractRequestPayload>[]
+        }
+        create: {
+          args: Prisma.contractRequestCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$contractRequestPayload>
+        }
+        createMany: {
+          args: Prisma.contractRequestCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.contractRequestCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$contractRequestPayload>[]
+        }
+        delete: {
+          args: Prisma.contractRequestDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$contractRequestPayload>
+        }
+        update: {
+          args: Prisma.contractRequestUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$contractRequestPayload>
+        }
+        deleteMany: {
+          args: Prisma.contractRequestDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.contractRequestUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.contractRequestUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$contractRequestPayload>[]
+        }
+        upsert: {
+          args: Prisma.contractRequestUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$contractRequestPayload>
+        }
+        aggregate: {
+          args: Prisma.ContractRequestAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateContractRequest>
+        }
+        groupBy: {
+          args: Prisma.contractRequestGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContractRequestGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.contractRequestCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ContractRequestCountAggregateOutputType> | number
+        }
+      }
+    }
     Invoice: {
       payload: Prisma.$InvoicePayload<ExtArgs>
       fields: Prisma.InvoiceFieldRefs
@@ -853,6 +929,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    RFQResponse: {
+      payload: Prisma.$RFQResponsePayload<ExtArgs>
+      fields: Prisma.RFQResponseFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RFQResponseFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQResponsePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RFQResponseFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQResponsePayload>
+        }
+        findFirst: {
+          args: Prisma.RFQResponseFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQResponsePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RFQResponseFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQResponsePayload>
+        }
+        findMany: {
+          args: Prisma.RFQResponseFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQResponsePayload>[]
+        }
+        create: {
+          args: Prisma.RFQResponseCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQResponsePayload>
+        }
+        createMany: {
+          args: Prisma.RFQResponseCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RFQResponseCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQResponsePayload>[]
+        }
+        delete: {
+          args: Prisma.RFQResponseDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQResponsePayload>
+        }
+        update: {
+          args: Prisma.RFQResponseUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQResponsePayload>
+        }
+        deleteMany: {
+          args: Prisma.RFQResponseDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RFQResponseUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RFQResponseUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQResponsePayload>[]
+        }
+        upsert: {
+          args: Prisma.RFQResponseUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RFQResponsePayload>
+        }
+        aggregate: {
+          args: Prisma.RFQResponseAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRFQResponse>
+        }
+        groupBy: {
+          args: Prisma.RFQResponseGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RFQResponseGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RFQResponseCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RFQResponseCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -908,6 +1058,7 @@ export type YardScalarFieldEnum = (typeof YardScalarFieldEnum)[keyof typeof Yard
 
 export const RFQScalarFieldEnum = {
   id: 'id',
+  requesterId: 'requesterId',
   vesselId: 'vesselId',
   vesselName: 'vesselName',
   imoNumber: 'imoNumber',
@@ -937,7 +1088,9 @@ export const RFQWorkItemScalarFieldEnum = {
   estimatedQty: 'estimatedQty',
   uom: 'uom',
   isKnownDefect: 'isKnownDefect',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  rFQResponseId: 'rFQResponseId',
+  availableForContractors: 'availableForContractors'
 } as const
 
 export type RFQWorkItemScalarFieldEnum = (typeof RFQWorkItemScalarFieldEnum)[keyof typeof RFQWorkItemScalarFieldEnum]
@@ -948,7 +1101,9 @@ export const RFQSurveyScalarFieldEnum = {
   rfqId: 'rfqId',
   type: 'type',
   mandatory: 'mandatory',
-  notes: 'notes'
+  notes: 'notes',
+  rFQResponseId: 'rFQResponseId',
+  availableForContractors: 'availableForContractors'
 } as const
 
 export type RFQSurveyScalarFieldEnum = (typeof RFQSurveyScalarFieldEnum)[keyof typeof RFQSurveyScalarFieldEnum]
@@ -967,6 +1122,21 @@ export const ContractScalarFieldEnum = {
 export type ContractScalarFieldEnum = (typeof ContractScalarFieldEnum)[keyof typeof ContractScalarFieldEnum]
 
 
+export const ContractRequestScalarFieldEnum = {
+  id: 'id',
+  contractorId: 'contractorId',
+  minPrice: 'minPrice',
+  maxPrice: 'maxPrice',
+  startDate: 'startDate',
+  status: 'status',
+  createdAt: 'createdAt',
+  rFQWorkItemId: 'rFQWorkItemId',
+  rFQSurveyId: 'rFQSurveyId'
+} as const
+
+export type ContractRequestScalarFieldEnum = (typeof ContractRequestScalarFieldEnum)[keyof typeof ContractRequestScalarFieldEnum]
+
+
 export const InvoiceScalarFieldEnum = {
   id: 'id',
   contractId: 'contractId',
@@ -978,6 +1148,19 @@ export const InvoiceScalarFieldEnum = {
 } as const
 
 export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
+
+
+export const RFQResponseScalarFieldEnum = {
+  id: 'id',
+  rfqId: 'rfqId',
+  price: 'price',
+  status: 'status',
+  rejectionReason: 'rejectionReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RFQResponseScalarFieldEnum = (typeof RFQResponseScalarFieldEnum)[keyof typeof RFQResponseScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1114,6 +1297,34 @@ export type EnumSurveyTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prism
 export type ListEnumSurveyTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurveyType[]'>
     
 
+
+/**
+ * Reference to a field of type 'ContractRequestStatus'
+ */
+export type EnumContractRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContractRequestStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ContractRequestStatus[]'
+ */
+export type ListEnumContractRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContractRequestStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'RFQResponseStatus'
+ */
+export type EnumRFQResponseStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RFQResponseStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'RFQResponseStatus[]'
+ */
+export type ListEnumRFQResponseStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RFQResponseStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -1229,7 +1440,9 @@ export type GlobalOmitConfig = {
   rFQWorkItem?: Prisma.RFQWorkItemOmit
   rFQSurvey?: Prisma.RFQSurveyOmit
   contract?: Prisma.ContractOmit
+  contractRequest?: Prisma.contractRequestOmit
   invoice?: Prisma.InvoiceOmit
+  rFQResponse?: Prisma.RFQResponseOmit
 }
 
 /* Types for Logging */

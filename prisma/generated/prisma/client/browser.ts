@@ -43,7 +43,17 @@ export type RFQSurvey = Prisma.RFQSurveyModel
  */
 export type Contract = Prisma.ContractModel
 /**
+ * Model contractRequest
+ * 
+ */
+export type contractRequest = Prisma.contractRequestModel
+/**
  * Model Invoice
  * 
  */
 export type Invoice = Prisma.InvoiceModel
+/**
+ * Model RFQResponse
+ * 
+ */
+export type RFQResponse = Prisma.RFQResponseModel

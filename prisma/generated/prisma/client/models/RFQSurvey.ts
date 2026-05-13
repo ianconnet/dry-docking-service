@@ -30,6 +30,8 @@ export type RFQSurveyMinAggregateOutputType = {
   type: $Enums.SurveyType | null
   mandatory: boolean | null
   notes: string | null
+  rFQResponseId: string | null
+  availableForContractors: boolean | null
 }
 
 export type RFQSurveyMaxAggregateOutputType = {
@@ -38,6 +40,8 @@ export type RFQSurveyMaxAggregateOutputType = {
   type: $Enums.SurveyType | null
   mandatory: boolean | null
   notes: string | null
+  rFQResponseId: string | null
+  availableForContractors: boolean | null
 }
 
 export type RFQSurveyCountAggregateOutputType = {
@@ -46,6 +50,8 @@ export type RFQSurveyCountAggregateOutputType = {
   type: number
   mandatory: number
   notes: number
+  rFQResponseId: number
+  availableForContractors: number
   _all: number
 }
 
@@ -56,6 +62,8 @@ export type RFQSurveyMinAggregateInputType = {
   type?: true
   mandatory?: true
   notes?: true
+  rFQResponseId?: true
+  availableForContractors?: true
 }
 
 export type RFQSurveyMaxAggregateInputType = {
@@ -64,6 +72,8 @@ export type RFQSurveyMaxAggregateInputType = {
   type?: true
   mandatory?: true
   notes?: true
+  rFQResponseId?: true
+  availableForContractors?: true
 }
 
 export type RFQSurveyCountAggregateInputType = {
@@ -72,6 +82,8 @@ export type RFQSurveyCountAggregateInputType = {
   type?: true
   mandatory?: true
   notes?: true
+  rFQResponseId?: true
+  availableForContractors?: true
   _all?: true
 }
 
@@ -153,6 +165,8 @@ export type RFQSurveyGroupByOutputType = {
   type: $Enums.SurveyType
   mandatory: boolean
   notes: string | null
+  rFQResponseId: string | null
+  availableForContractors: boolean
   _count: RFQSurveyCountAggregateOutputType | null
   _min: RFQSurveyMinAggregateOutputType | null
   _max: RFQSurveyMaxAggregateOutputType | null
@@ -182,7 +196,11 @@ export type RFQSurveyWhereInput = {
   type?: Prisma.EnumSurveyTypeFilter<"RFQSurvey"> | $Enums.SurveyType
   mandatory?: Prisma.BoolFilter<"RFQSurvey"> | boolean
   notes?: Prisma.StringNullableFilter<"RFQSurvey"> | string | null
+  rFQResponseId?: Prisma.StringNullableFilter<"RFQSurvey"> | string | null
+  availableForContractors?: Prisma.BoolFilter<"RFQSurvey"> | boolean
   rfq?: Prisma.XOR<Prisma.RFQScalarRelationFilter, Prisma.RFQWhereInput>
+  rfqresponse?: Prisma.XOR<Prisma.RFQResponseNullableScalarRelationFilter, Prisma.RFQResponseWhereInput> | null
+  contractRequests?: Prisma.ContractRequestListRelationFilter
 }
 
 export type RFQSurveyOrderByWithRelationInput = {
@@ -191,7 +209,11 @@ export type RFQSurveyOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   mandatory?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  rFQResponseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  availableForContractors?: Prisma.SortOrder
   rfq?: Prisma.RFQOrderByWithRelationInput
+  rfqresponse?: Prisma.RFQResponseOrderByWithRelationInput
+  contractRequests?: Prisma.contractRequestOrderByRelationAggregateInput
 }
 
 export type RFQSurveyWhereUniqueInput = Prisma.AtLeast<{
@@ -203,7 +225,11 @@ export type RFQSurveyWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.EnumSurveyTypeFilter<"RFQSurvey"> | $Enums.SurveyType
   mandatory?: Prisma.BoolFilter<"RFQSurvey"> | boolean
   notes?: Prisma.StringNullableFilter<"RFQSurvey"> | string | null
+  rFQResponseId?: Prisma.StringNullableFilter<"RFQSurvey"> | string | null
+  availableForContractors?: Prisma.BoolFilter<"RFQSurvey"> | boolean
   rfq?: Prisma.XOR<Prisma.RFQScalarRelationFilter, Prisma.RFQWhereInput>
+  rfqresponse?: Prisma.XOR<Prisma.RFQResponseNullableScalarRelationFilter, Prisma.RFQResponseWhereInput> | null
+  contractRequests?: Prisma.ContractRequestListRelationFilter
 }, "id">
 
 export type RFQSurveyOrderByWithAggregationInput = {
@@ -212,6 +238,8 @@ export type RFQSurveyOrderByWithAggregationInput = {
   type?: Prisma.SortOrder
   mandatory?: Prisma.SortOrder
   notes?: Prisma.SortOrderInput | Prisma.SortOrder
+  rFQResponseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  availableForContractors?: Prisma.SortOrder
   _count?: Prisma.RFQSurveyCountOrderByAggregateInput
   _max?: Prisma.RFQSurveyMaxOrderByAggregateInput
   _min?: Prisma.RFQSurveyMinOrderByAggregateInput
@@ -226,6 +254,8 @@ export type RFQSurveyScalarWhereWithAggregatesInput = {
   type?: Prisma.EnumSurveyTypeWithAggregatesFilter<"RFQSurvey"> | $Enums.SurveyType
   mandatory?: Prisma.BoolWithAggregatesFilter<"RFQSurvey"> | boolean
   notes?: Prisma.StringNullableWithAggregatesFilter<"RFQSurvey"> | string | null
+  rFQResponseId?: Prisma.StringNullableWithAggregatesFilter<"RFQSurvey"> | string | null
+  availableForContractors?: Prisma.BoolWithAggregatesFilter<"RFQSurvey"> | boolean
 }
 
 export type RFQSurveyCreateInput = {
@@ -233,7 +263,10 @@ export type RFQSurveyCreateInput = {
   type: $Enums.SurveyType
   mandatory?: boolean
   notes?: string | null
+  availableForContractors?: boolean
   rfq: Prisma.RFQCreateNestedOneWithoutSurveysInput
+  rfqresponse?: Prisma.RFQResponseCreateNestedOneWithoutAcceptedSurveysInput
+  contractRequests?: Prisma.contractRequestCreateNestedManyWithoutSurveyInput
 }
 
 export type RFQSurveyUncheckedCreateInput = {
@@ -242,6 +275,9 @@ export type RFQSurveyUncheckedCreateInput = {
   type: $Enums.SurveyType
   mandatory?: boolean
   notes?: string | null
+  rFQResponseId?: string | null
+  availableForContractors?: boolean
+  contractRequests?: Prisma.contractRequestUncheckedCreateNestedManyWithoutSurveyInput
 }
 
 export type RFQSurveyUpdateInput = {
@@ -249,7 +285,10 @@ export type RFQSurveyUpdateInput = {
   type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
   mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rfq?: Prisma.RFQUpdateOneRequiredWithoutSurveysNestedInput
+  rfqresponse?: Prisma.RFQResponseUpdateOneWithoutAcceptedSurveysNestedInput
+  contractRequests?: Prisma.contractRequestUpdateManyWithoutSurveyNestedInput
 }
 
 export type RFQSurveyUncheckedUpdateInput = {
@@ -258,6 +297,9 @@ export type RFQSurveyUncheckedUpdateInput = {
   type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
   mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rFQResponseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  contractRequests?: Prisma.contractRequestUncheckedUpdateManyWithoutSurveyNestedInput
 }
 
 export type RFQSurveyCreateManyInput = {
@@ -266,6 +308,8 @@ export type RFQSurveyCreateManyInput = {
   type: $Enums.SurveyType
   mandatory?: boolean
   notes?: string | null
+  rFQResponseId?: string | null
+  availableForContractors?: boolean
 }
 
 export type RFQSurveyUpdateManyMutationInput = {
@@ -273,6 +317,7 @@ export type RFQSurveyUpdateManyMutationInput = {
   type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
   mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type RFQSurveyUncheckedUpdateManyInput = {
@@ -281,6 +326,8 @@ export type RFQSurveyUncheckedUpdateManyInput = {
   type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
   mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rFQResponseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type RFQSurveyListRelationFilter = {
@@ -299,6 +346,8 @@ export type RFQSurveyCountOrderByAggregateInput = {
   type?: Prisma.SortOrder
   mandatory?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  rFQResponseId?: Prisma.SortOrder
+  availableForContractors?: Prisma.SortOrder
 }
 
 export type RFQSurveyMaxOrderByAggregateInput = {
@@ -307,6 +356,8 @@ export type RFQSurveyMaxOrderByAggregateInput = {
   type?: Prisma.SortOrder
   mandatory?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  rFQResponseId?: Prisma.SortOrder
+  availableForContractors?: Prisma.SortOrder
 }
 
 export type RFQSurveyMinOrderByAggregateInput = {
@@ -315,6 +366,13 @@ export type RFQSurveyMinOrderByAggregateInput = {
   type?: Prisma.SortOrder
   mandatory?: Prisma.SortOrder
   notes?: Prisma.SortOrder
+  rFQResponseId?: Prisma.SortOrder
+  availableForContractors?: Prisma.SortOrder
+}
+
+export type RFQSurveyNullableScalarRelationFilter = {
+  is?: Prisma.RFQSurveyWhereInput | null
+  isNot?: Prisma.RFQSurveyWhereInput | null
 }
 
 export type RFQSurveyCreateNestedManyWithoutRfqInput = {
@@ -363,11 +421,72 @@ export type EnumSurveyTypeFieldUpdateOperationsInput = {
   set?: $Enums.SurveyType
 }
 
+export type RFQSurveyCreateNestedOneWithoutContractRequestsInput = {
+  create?: Prisma.XOR<Prisma.RFQSurveyCreateWithoutContractRequestsInput, Prisma.RFQSurveyUncheckedCreateWithoutContractRequestsInput>
+  connectOrCreate?: Prisma.RFQSurveyCreateOrConnectWithoutContractRequestsInput
+  connect?: Prisma.RFQSurveyWhereUniqueInput
+}
+
+export type RFQSurveyUpdateOneWithoutContractRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.RFQSurveyCreateWithoutContractRequestsInput, Prisma.RFQSurveyUncheckedCreateWithoutContractRequestsInput>
+  connectOrCreate?: Prisma.RFQSurveyCreateOrConnectWithoutContractRequestsInput
+  upsert?: Prisma.RFQSurveyUpsertWithoutContractRequestsInput
+  disconnect?: Prisma.RFQSurveyWhereInput | boolean
+  delete?: Prisma.RFQSurveyWhereInput | boolean
+  connect?: Prisma.RFQSurveyWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RFQSurveyUpdateToOneWithWhereWithoutContractRequestsInput, Prisma.RFQSurveyUpdateWithoutContractRequestsInput>, Prisma.RFQSurveyUncheckedUpdateWithoutContractRequestsInput>
+}
+
+export type RFQSurveyCreateNestedManyWithoutRfqresponseInput = {
+  create?: Prisma.XOR<Prisma.RFQSurveyCreateWithoutRfqresponseInput, Prisma.RFQSurveyUncheckedCreateWithoutRfqresponseInput> | Prisma.RFQSurveyCreateWithoutRfqresponseInput[] | Prisma.RFQSurveyUncheckedCreateWithoutRfqresponseInput[]
+  connectOrCreate?: Prisma.RFQSurveyCreateOrConnectWithoutRfqresponseInput | Prisma.RFQSurveyCreateOrConnectWithoutRfqresponseInput[]
+  createMany?: Prisma.RFQSurveyCreateManyRfqresponseInputEnvelope
+  connect?: Prisma.RFQSurveyWhereUniqueInput | Prisma.RFQSurveyWhereUniqueInput[]
+}
+
+export type RFQSurveyUncheckedCreateNestedManyWithoutRfqresponseInput = {
+  create?: Prisma.XOR<Prisma.RFQSurveyCreateWithoutRfqresponseInput, Prisma.RFQSurveyUncheckedCreateWithoutRfqresponseInput> | Prisma.RFQSurveyCreateWithoutRfqresponseInput[] | Prisma.RFQSurveyUncheckedCreateWithoutRfqresponseInput[]
+  connectOrCreate?: Prisma.RFQSurveyCreateOrConnectWithoutRfqresponseInput | Prisma.RFQSurveyCreateOrConnectWithoutRfqresponseInput[]
+  createMany?: Prisma.RFQSurveyCreateManyRfqresponseInputEnvelope
+  connect?: Prisma.RFQSurveyWhereUniqueInput | Prisma.RFQSurveyWhereUniqueInput[]
+}
+
+export type RFQSurveyUpdateManyWithoutRfqresponseNestedInput = {
+  create?: Prisma.XOR<Prisma.RFQSurveyCreateWithoutRfqresponseInput, Prisma.RFQSurveyUncheckedCreateWithoutRfqresponseInput> | Prisma.RFQSurveyCreateWithoutRfqresponseInput[] | Prisma.RFQSurveyUncheckedCreateWithoutRfqresponseInput[]
+  connectOrCreate?: Prisma.RFQSurveyCreateOrConnectWithoutRfqresponseInput | Prisma.RFQSurveyCreateOrConnectWithoutRfqresponseInput[]
+  upsert?: Prisma.RFQSurveyUpsertWithWhereUniqueWithoutRfqresponseInput | Prisma.RFQSurveyUpsertWithWhereUniqueWithoutRfqresponseInput[]
+  createMany?: Prisma.RFQSurveyCreateManyRfqresponseInputEnvelope
+  set?: Prisma.RFQSurveyWhereUniqueInput | Prisma.RFQSurveyWhereUniqueInput[]
+  disconnect?: Prisma.RFQSurveyWhereUniqueInput | Prisma.RFQSurveyWhereUniqueInput[]
+  delete?: Prisma.RFQSurveyWhereUniqueInput | Prisma.RFQSurveyWhereUniqueInput[]
+  connect?: Prisma.RFQSurveyWhereUniqueInput | Prisma.RFQSurveyWhereUniqueInput[]
+  update?: Prisma.RFQSurveyUpdateWithWhereUniqueWithoutRfqresponseInput | Prisma.RFQSurveyUpdateWithWhereUniqueWithoutRfqresponseInput[]
+  updateMany?: Prisma.RFQSurveyUpdateManyWithWhereWithoutRfqresponseInput | Prisma.RFQSurveyUpdateManyWithWhereWithoutRfqresponseInput[]
+  deleteMany?: Prisma.RFQSurveyScalarWhereInput | Prisma.RFQSurveyScalarWhereInput[]
+}
+
+export type RFQSurveyUncheckedUpdateManyWithoutRfqresponseNestedInput = {
+  create?: Prisma.XOR<Prisma.RFQSurveyCreateWithoutRfqresponseInput, Prisma.RFQSurveyUncheckedCreateWithoutRfqresponseInput> | Prisma.RFQSurveyCreateWithoutRfqresponseInput[] | Prisma.RFQSurveyUncheckedCreateWithoutRfqresponseInput[]
+  connectOrCreate?: Prisma.RFQSurveyCreateOrConnectWithoutRfqresponseInput | Prisma.RFQSurveyCreateOrConnectWithoutRfqresponseInput[]
+  upsert?: Prisma.RFQSurveyUpsertWithWhereUniqueWithoutRfqresponseInput | Prisma.RFQSurveyUpsertWithWhereUniqueWithoutRfqresponseInput[]
+  createMany?: Prisma.RFQSurveyCreateManyRfqresponseInputEnvelope
+  set?: Prisma.RFQSurveyWhereUniqueInput | Prisma.RFQSurveyWhereUniqueInput[]
+  disconnect?: Prisma.RFQSurveyWhereUniqueInput | Prisma.RFQSurveyWhereUniqueInput[]
+  delete?: Prisma.RFQSurveyWhereUniqueInput | Prisma.RFQSurveyWhereUniqueInput[]
+  connect?: Prisma.RFQSurveyWhereUniqueInput | Prisma.RFQSurveyWhereUniqueInput[]
+  update?: Prisma.RFQSurveyUpdateWithWhereUniqueWithoutRfqresponseInput | Prisma.RFQSurveyUpdateWithWhereUniqueWithoutRfqresponseInput[]
+  updateMany?: Prisma.RFQSurveyUpdateManyWithWhereWithoutRfqresponseInput | Prisma.RFQSurveyUpdateManyWithWhereWithoutRfqresponseInput[]
+  deleteMany?: Prisma.RFQSurveyScalarWhereInput | Prisma.RFQSurveyScalarWhereInput[]
+}
+
 export type RFQSurveyCreateWithoutRfqInput = {
   id?: string
   type: $Enums.SurveyType
   mandatory?: boolean
   notes?: string | null
+  availableForContractors?: boolean
+  rfqresponse?: Prisma.RFQResponseCreateNestedOneWithoutAcceptedSurveysInput
+  contractRequests?: Prisma.contractRequestCreateNestedManyWithoutSurveyInput
 }
 
 export type RFQSurveyUncheckedCreateWithoutRfqInput = {
@@ -375,6 +494,9 @@ export type RFQSurveyUncheckedCreateWithoutRfqInput = {
   type: $Enums.SurveyType
   mandatory?: boolean
   notes?: string | null
+  rFQResponseId?: string | null
+  availableForContractors?: boolean
+  contractRequests?: Prisma.contractRequestUncheckedCreateNestedManyWithoutSurveyInput
 }
 
 export type RFQSurveyCreateOrConnectWithoutRfqInput = {
@@ -412,6 +534,110 @@ export type RFQSurveyScalarWhereInput = {
   type?: Prisma.EnumSurveyTypeFilter<"RFQSurvey"> | $Enums.SurveyType
   mandatory?: Prisma.BoolFilter<"RFQSurvey"> | boolean
   notes?: Prisma.StringNullableFilter<"RFQSurvey"> | string | null
+  rFQResponseId?: Prisma.StringNullableFilter<"RFQSurvey"> | string | null
+  availableForContractors?: Prisma.BoolFilter<"RFQSurvey"> | boolean
+}
+
+export type RFQSurveyCreateWithoutContractRequestsInput = {
+  id?: string
+  type: $Enums.SurveyType
+  mandatory?: boolean
+  notes?: string | null
+  availableForContractors?: boolean
+  rfq: Prisma.RFQCreateNestedOneWithoutSurveysInput
+  rfqresponse?: Prisma.RFQResponseCreateNestedOneWithoutAcceptedSurveysInput
+}
+
+export type RFQSurveyUncheckedCreateWithoutContractRequestsInput = {
+  id?: string
+  rfqId: string
+  type: $Enums.SurveyType
+  mandatory?: boolean
+  notes?: string | null
+  rFQResponseId?: string | null
+  availableForContractors?: boolean
+}
+
+export type RFQSurveyCreateOrConnectWithoutContractRequestsInput = {
+  where: Prisma.RFQSurveyWhereUniqueInput
+  create: Prisma.XOR<Prisma.RFQSurveyCreateWithoutContractRequestsInput, Prisma.RFQSurveyUncheckedCreateWithoutContractRequestsInput>
+}
+
+export type RFQSurveyUpsertWithoutContractRequestsInput = {
+  update: Prisma.XOR<Prisma.RFQSurveyUpdateWithoutContractRequestsInput, Prisma.RFQSurveyUncheckedUpdateWithoutContractRequestsInput>
+  create: Prisma.XOR<Prisma.RFQSurveyCreateWithoutContractRequestsInput, Prisma.RFQSurveyUncheckedCreateWithoutContractRequestsInput>
+  where?: Prisma.RFQSurveyWhereInput
+}
+
+export type RFQSurveyUpdateToOneWithWhereWithoutContractRequestsInput = {
+  where?: Prisma.RFQSurveyWhereInput
+  data: Prisma.XOR<Prisma.RFQSurveyUpdateWithoutContractRequestsInput, Prisma.RFQSurveyUncheckedUpdateWithoutContractRequestsInput>
+}
+
+export type RFQSurveyUpdateWithoutContractRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
+  mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rfq?: Prisma.RFQUpdateOneRequiredWithoutSurveysNestedInput
+  rfqresponse?: Prisma.RFQResponseUpdateOneWithoutAcceptedSurveysNestedInput
+}
+
+export type RFQSurveyUncheckedUpdateWithoutContractRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rfqId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
+  mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rFQResponseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type RFQSurveyCreateWithoutRfqresponseInput = {
+  id?: string
+  type: $Enums.SurveyType
+  mandatory?: boolean
+  notes?: string | null
+  availableForContractors?: boolean
+  rfq: Prisma.RFQCreateNestedOneWithoutSurveysInput
+  contractRequests?: Prisma.contractRequestCreateNestedManyWithoutSurveyInput
+}
+
+export type RFQSurveyUncheckedCreateWithoutRfqresponseInput = {
+  id?: string
+  rfqId: string
+  type: $Enums.SurveyType
+  mandatory?: boolean
+  notes?: string | null
+  availableForContractors?: boolean
+  contractRequests?: Prisma.contractRequestUncheckedCreateNestedManyWithoutSurveyInput
+}
+
+export type RFQSurveyCreateOrConnectWithoutRfqresponseInput = {
+  where: Prisma.RFQSurveyWhereUniqueInput
+  create: Prisma.XOR<Prisma.RFQSurveyCreateWithoutRfqresponseInput, Prisma.RFQSurveyUncheckedCreateWithoutRfqresponseInput>
+}
+
+export type RFQSurveyCreateManyRfqresponseInputEnvelope = {
+  data: Prisma.RFQSurveyCreateManyRfqresponseInput | Prisma.RFQSurveyCreateManyRfqresponseInput[]
+  skipDuplicates?: boolean
+}
+
+export type RFQSurveyUpsertWithWhereUniqueWithoutRfqresponseInput = {
+  where: Prisma.RFQSurveyWhereUniqueInput
+  update: Prisma.XOR<Prisma.RFQSurveyUpdateWithoutRfqresponseInput, Prisma.RFQSurveyUncheckedUpdateWithoutRfqresponseInput>
+  create: Prisma.XOR<Prisma.RFQSurveyCreateWithoutRfqresponseInput, Prisma.RFQSurveyUncheckedCreateWithoutRfqresponseInput>
+}
+
+export type RFQSurveyUpdateWithWhereUniqueWithoutRfqresponseInput = {
+  where: Prisma.RFQSurveyWhereUniqueInput
+  data: Prisma.XOR<Prisma.RFQSurveyUpdateWithoutRfqresponseInput, Prisma.RFQSurveyUncheckedUpdateWithoutRfqresponseInput>
+}
+
+export type RFQSurveyUpdateManyWithWhereWithoutRfqresponseInput = {
+  where: Prisma.RFQSurveyScalarWhereInput
+  data: Prisma.XOR<Prisma.RFQSurveyUpdateManyMutationInput, Prisma.RFQSurveyUncheckedUpdateManyWithoutRfqresponseInput>
 }
 
 export type RFQSurveyCreateManyRfqInput = {
@@ -419,6 +645,8 @@ export type RFQSurveyCreateManyRfqInput = {
   type: $Enums.SurveyType
   mandatory?: boolean
   notes?: string | null
+  rFQResponseId?: string | null
+  availableForContractors?: boolean
 }
 
 export type RFQSurveyUpdateWithoutRfqInput = {
@@ -426,6 +654,9 @@ export type RFQSurveyUpdateWithoutRfqInput = {
   type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
   mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rfqresponse?: Prisma.RFQResponseUpdateOneWithoutAcceptedSurveysNestedInput
+  contractRequests?: Prisma.contractRequestUpdateManyWithoutSurveyNestedInput
 }
 
 export type RFQSurveyUncheckedUpdateWithoutRfqInput = {
@@ -433,6 +664,9 @@ export type RFQSurveyUncheckedUpdateWithoutRfqInput = {
   type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
   mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rFQResponseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  contractRequests?: Prisma.contractRequestUncheckedUpdateManyWithoutSurveyNestedInput
 }
 
 export type RFQSurveyUncheckedUpdateManyWithoutRfqInput = {
@@ -440,8 +674,77 @@ export type RFQSurveyUncheckedUpdateManyWithoutRfqInput = {
   type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
   mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rFQResponseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
+export type RFQSurveyCreateManyRfqresponseInput = {
+  id?: string
+  rfqId: string
+  type: $Enums.SurveyType
+  mandatory?: boolean
+  notes?: string | null
+  availableForContractors?: boolean
+}
+
+export type RFQSurveyUpdateWithoutRfqresponseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
+  mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rfq?: Prisma.RFQUpdateOneRequiredWithoutSurveysNestedInput
+  contractRequests?: Prisma.contractRequestUpdateManyWithoutSurveyNestedInput
+}
+
+export type RFQSurveyUncheckedUpdateWithoutRfqresponseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rfqId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
+  mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  contractRequests?: Prisma.contractRequestUncheckedUpdateManyWithoutSurveyNestedInput
+}
+
+export type RFQSurveyUncheckedUpdateManyWithoutRfqresponseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rfqId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumSurveyTypeFieldUpdateOperationsInput | $Enums.SurveyType
+  mandatory?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+
+/**
+ * Count Type RFQSurveyCountOutputType
+ */
+
+export type RFQSurveyCountOutputType = {
+  contractRequests: number
+}
+
+export type RFQSurveyCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  contractRequests?: boolean | RFQSurveyCountOutputTypeCountContractRequestsArgs
+}
+
+/**
+ * RFQSurveyCountOutputType without action
+ */
+export type RFQSurveyCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RFQSurveyCountOutputType
+   */
+  select?: Prisma.RFQSurveyCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * RFQSurveyCountOutputType without action
+ */
+export type RFQSurveyCountOutputTypeCountContractRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.contractRequestWhereInput
+}
 
 
 export type RFQSurveySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -450,7 +753,12 @@ export type RFQSurveySelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   type?: boolean
   mandatory?: boolean
   notes?: boolean
+  rFQResponseId?: boolean
+  availableForContractors?: boolean
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQSurvey$rfqresponseArgs<ExtArgs>
+  contractRequests?: boolean | Prisma.RFQSurvey$contractRequestsArgs<ExtArgs>
+  _count?: boolean | Prisma.RFQSurveyCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["rFQSurvey"]>
 
 export type RFQSurveySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -459,7 +767,10 @@ export type RFQSurveySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   type?: boolean
   mandatory?: boolean
   notes?: boolean
+  rFQResponseId?: boolean
+  availableForContractors?: boolean
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQSurvey$rfqresponseArgs<ExtArgs>
 }, ExtArgs["result"]["rFQSurvey"]>
 
 export type RFQSurveySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -468,7 +779,10 @@ export type RFQSurveySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   type?: boolean
   mandatory?: boolean
   notes?: boolean
+  rFQResponseId?: boolean
+  availableForContractors?: boolean
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQSurvey$rfqresponseArgs<ExtArgs>
 }, ExtArgs["result"]["rFQSurvey"]>
 
 export type RFQSurveySelectScalar = {
@@ -477,23 +791,32 @@ export type RFQSurveySelectScalar = {
   type?: boolean
   mandatory?: boolean
   notes?: boolean
+  rFQResponseId?: boolean
+  availableForContractors?: boolean
 }
 
-export type RFQSurveyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "rfqId" | "type" | "mandatory" | "notes", ExtArgs["result"]["rFQSurvey"]>
+export type RFQSurveyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "rfqId" | "type" | "mandatory" | "notes" | "rFQResponseId" | "availableForContractors", ExtArgs["result"]["rFQSurvey"]>
 export type RFQSurveyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQSurvey$rfqresponseArgs<ExtArgs>
+  contractRequests?: boolean | Prisma.RFQSurvey$contractRequestsArgs<ExtArgs>
+  _count?: boolean | Prisma.RFQSurveyCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RFQSurveyIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQSurvey$rfqresponseArgs<ExtArgs>
 }
 export type RFQSurveyIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQSurvey$rfqresponseArgs<ExtArgs>
 }
 
 export type $RFQSurveyPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "RFQSurvey"
   objects: {
     rfq: Prisma.$RFQPayload<ExtArgs>
+    rfqresponse: Prisma.$RFQResponsePayload<ExtArgs> | null
+    contractRequests: Prisma.$contractRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -501,6 +824,8 @@ export type $RFQSurveyPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     type: $Enums.SurveyType
     mandatory: boolean
     notes: string | null
+    rFQResponseId: string | null
+    availableForContractors: boolean
   }, ExtArgs["result"]["rFQSurvey"]>
   composites: {}
 }
@@ -896,6 +1221,8 @@ readonly fields: RFQSurveyFieldRefs;
 export interface Prisma__RFQSurveyClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   rfq<T extends Prisma.RFQDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQDefaultArgs<ExtArgs>>): Prisma.Prisma__RFQClient<runtime.Types.Result.GetResult<Prisma.$RFQPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  rfqresponse<T extends Prisma.RFQSurvey$rfqresponseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQSurvey$rfqresponseArgs<ExtArgs>>): Prisma.Prisma__RFQResponseClient<runtime.Types.Result.GetResult<Prisma.$RFQResponsePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  contractRequests<T extends Prisma.RFQSurvey$contractRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQSurvey$contractRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$contractRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -930,6 +1257,8 @@ export interface RFQSurveyFieldRefs {
   readonly type: Prisma.FieldRef<"RFQSurvey", 'SurveyType'>
   readonly mandatory: Prisma.FieldRef<"RFQSurvey", 'Boolean'>
   readonly notes: Prisma.FieldRef<"RFQSurvey", 'String'>
+  readonly rFQResponseId: Prisma.FieldRef<"RFQSurvey", 'String'>
+  readonly availableForContractors: Prisma.FieldRef<"RFQSurvey", 'Boolean'>
 }
     
 
@@ -1328,6 +1657,49 @@ export type RFQSurveyDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many RFQSurveys to delete.
    */
   limit?: number
+}
+
+/**
+ * RFQSurvey.rfqresponse
+ */
+export type RFQSurvey$rfqresponseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RFQResponse
+   */
+  select?: Prisma.RFQResponseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RFQResponse
+   */
+  omit?: Prisma.RFQResponseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RFQResponseInclude<ExtArgs> | null
+  where?: Prisma.RFQResponseWhereInput
+}
+
+/**
+ * RFQSurvey.contractRequests
+ */
+export type RFQSurvey$contractRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the contractRequest
+   */
+  select?: Prisma.contractRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the contractRequest
+   */
+  omit?: Prisma.contractRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.contractRequestInclude<ExtArgs> | null
+  where?: Prisma.contractRequestWhereInput
+  orderBy?: Prisma.contractRequestOrderByWithRelationInput | Prisma.contractRequestOrderByWithRelationInput[]
+  cursor?: Prisma.contractRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContractRequestScalarFieldEnum | Prisma.ContractRequestScalarFieldEnum[]
 }
 
 /**

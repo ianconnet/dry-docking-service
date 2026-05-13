@@ -239,6 +239,13 @@ export type FloatFilter<$PrismaModel = never> = {
   not?: Prisma.NestedFloatFilter<$PrismaModel> | number
 }
 
+export type EnumContractRequestStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContractRequestStatus | Prisma.EnumContractRequestStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ContractRequestStatus[] | Prisma.ListEnumContractRequestStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContractRequestStatus[] | Prisma.ListEnumContractRequestStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContractRequestStatusFilter<$PrismaModel> | $Enums.ContractRequestStatus
+}
+
 export type FloatWithAggregatesFilter<$PrismaModel = never> = {
   equals?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel>
@@ -253,6 +260,33 @@ export type FloatWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedFloatFilter<$PrismaModel>
   _min?: Prisma.NestedFloatFilter<$PrismaModel>
   _max?: Prisma.NestedFloatFilter<$PrismaModel>
+}
+
+export type EnumContractRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContractRequestStatus | Prisma.EnumContractRequestStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ContractRequestStatus[] | Prisma.ListEnumContractRequestStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContractRequestStatus[] | Prisma.ListEnumContractRequestStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContractRequestStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContractRequestStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumContractRequestStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumContractRequestStatusFilter<$PrismaModel>
+}
+
+export type EnumRFQResponseStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.RFQResponseStatus | Prisma.EnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RFQResponseStatus[] | Prisma.ListEnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RFQResponseStatus[] | Prisma.ListEnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRFQResponseStatusFilter<$PrismaModel> | $Enums.RFQResponseStatus
+}
+
+export type EnumRFQResponseStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RFQResponseStatus | Prisma.EnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RFQResponseStatus[] | Prisma.ListEnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RFQResponseStatus[] | Prisma.ListEnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRFQResponseStatusWithAggregatesFilter<$PrismaModel> | $Enums.RFQResponseStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRFQResponseStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRFQResponseStatusFilter<$PrismaModel>
 }
 
 export type NestedStringFilter<$PrismaModel = never> = {
@@ -482,6 +516,13 @@ export type NestedFloatFilter<$PrismaModel = never> = {
   not?: Prisma.NestedFloatFilter<$PrismaModel> | number
 }
 
+export type NestedEnumContractRequestStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContractRequestStatus | Prisma.EnumContractRequestStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ContractRequestStatus[] | Prisma.ListEnumContractRequestStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContractRequestStatus[] | Prisma.ListEnumContractRequestStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContractRequestStatusFilter<$PrismaModel> | $Enums.ContractRequestStatus
+}
+
 export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
   equals?: number | Prisma.FloatFieldRefInput<$PrismaModel>
   in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel>
@@ -496,6 +537,33 @@ export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedFloatFilter<$PrismaModel>
   _min?: Prisma.NestedFloatFilter<$PrismaModel>
   _max?: Prisma.NestedFloatFilter<$PrismaModel>
+}
+
+export type NestedEnumContractRequestStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ContractRequestStatus | Prisma.EnumContractRequestStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ContractRequestStatus[] | Prisma.ListEnumContractRequestStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ContractRequestStatus[] | Prisma.ListEnumContractRequestStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumContractRequestStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContractRequestStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumContractRequestStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumContractRequestStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumRFQResponseStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.RFQResponseStatus | Prisma.EnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RFQResponseStatus[] | Prisma.ListEnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RFQResponseStatus[] | Prisma.ListEnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRFQResponseStatusFilter<$PrismaModel> | $Enums.RFQResponseStatus
+}
+
+export type NestedEnumRFQResponseStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RFQResponseStatus | Prisma.EnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.RFQResponseStatus[] | Prisma.ListEnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RFQResponseStatus[] | Prisma.ListEnumRFQResponseStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRFQResponseStatusWithAggregatesFilter<$PrismaModel> | $Enums.RFQResponseStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRFQResponseStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRFQResponseStatusFilter<$PrismaModel>
 }
 
 

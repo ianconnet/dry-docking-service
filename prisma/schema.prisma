@@ -69,6 +69,8 @@ enum SurveyType {
 model RFQ {
   id String @id @default(uuid())
 
+  requesterId String
+
   // Vessel Snapshot
   vesselId   String
   vesselName String
@@ -95,8 +97,9 @@ model RFQ {
   workItems RFQWorkItem[]
   surveys   RFQSurvey[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  rfqresponses RFQResponse[]
 
   @@index([imoNumber])
 }
@@ -114,7 +117,12 @@ model RFQWorkItem {
 
   isKnownDefect Boolean @default(false)
 
-  createdAt DateTime @default(now())
+  createdAt     DateTime     @default(now())
+  rfqresponse   RFQResponse? @relation(fields: [rFQResponseId], references: [id])
+  rFQResponseId String?
+
+  availableForContractors Boolean           @default(false)
+  contractRequests        contractRequest[]
 
   @@index([rfqId])
 }
@@ -127,7 +135,12 @@ model RFQSurvey {
   type      SurveyType
   mandatory Boolean    @default(true)
 
-  notes String?
+  notes         String?
+  rfqresponse   RFQResponse? @relation(fields: [rFQResponseId], references: [id])
+  rFQResponseId String?
+
+  availableForContractors Boolean           @default(false)
+  contractRequests        contractRequest[]
 
   @@index([rfqId])
 }
@@ -152,6 +165,26 @@ model Contract {
   invoices Invoice[]
 }
 
+enum ContractRequestStatus {
+  pending
+  accepted
+  rejected
+}
+
+model contractRequest {
+  id            String                @id @default(uuid())
+  workItem      RFQWorkItem?          @relation(fields: [rFQWorkItemId], references: [id])
+  survey        RFQSurvey?            @relation(fields: [rFQSurveyId], references: [id])
+  contractorId  String
+  minPrice      Float
+  maxPrice      Float
+  startDate     String
+  status        ContractRequestStatus @default(pending)
+  createdAt     DateTime              @default(now())
+  rFQWorkItemId String?
+  rFQSurveyId   String?
+}
+
 model Invoice {
   id         String   @id @default(uuid())
   contractId String
@@ -162,4 +195,26 @@ model Invoice {
   updatedAt  DateTime @updatedAt
 
   contract Contract @relation(fields: [contractId], references: [id])
+}
+
+enum RFQResponseStatus {
+  pending
+  accepted
+  rejected
+}
+
+model RFQResponse {
+  id                String        @id @default(uuid())
+  rfqId             String
+  rfq               RFQ           @relation(fields: [rfqId], references: [id])
+  price             Float
+  acceptedWorkItems RFQWorkItem[]
+  acceptedSurveys   RFQSurvey[]
+
+  status RFQResponseStatus @default(pending)
+
+  rejectionReason String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

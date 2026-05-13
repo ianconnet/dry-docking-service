@@ -43,6 +43,8 @@ export type RFQWorkItemMinAggregateOutputType = {
   uom: string | null
   isKnownDefect: boolean | null
   createdAt: Date | null
+  rFQResponseId: string | null
+  availableForContractors: boolean | null
 }
 
 export type RFQWorkItemMaxAggregateOutputType = {
@@ -54,6 +56,8 @@ export type RFQWorkItemMaxAggregateOutputType = {
   uom: string | null
   isKnownDefect: boolean | null
   createdAt: Date | null
+  rFQResponseId: string | null
+  availableForContractors: boolean | null
 }
 
 export type RFQWorkItemCountAggregateOutputType = {
@@ -65,6 +69,8 @@ export type RFQWorkItemCountAggregateOutputType = {
   uom: number
   isKnownDefect: number
   createdAt: number
+  rFQResponseId: number
+  availableForContractors: number
   _all: number
 }
 
@@ -86,6 +92,8 @@ export type RFQWorkItemMinAggregateInputType = {
   uom?: true
   isKnownDefect?: true
   createdAt?: true
+  rFQResponseId?: true
+  availableForContractors?: true
 }
 
 export type RFQWorkItemMaxAggregateInputType = {
@@ -97,6 +105,8 @@ export type RFQWorkItemMaxAggregateInputType = {
   uom?: true
   isKnownDefect?: true
   createdAt?: true
+  rFQResponseId?: true
+  availableForContractors?: true
 }
 
 export type RFQWorkItemCountAggregateInputType = {
@@ -108,6 +118,8 @@ export type RFQWorkItemCountAggregateInputType = {
   uom?: true
   isKnownDefect?: true
   createdAt?: true
+  rFQResponseId?: true
+  availableForContractors?: true
   _all?: true
 }
 
@@ -206,6 +218,8 @@ export type RFQWorkItemGroupByOutputType = {
   uom: string | null
   isKnownDefect: boolean
   createdAt: Date
+  rFQResponseId: string | null
+  availableForContractors: boolean
   _count: RFQWorkItemCountAggregateOutputType | null
   _avg: RFQWorkItemAvgAggregateOutputType | null
   _sum: RFQWorkItemSumAggregateOutputType | null
@@ -240,7 +254,11 @@ export type RFQWorkItemWhereInput = {
   uom?: Prisma.StringNullableFilter<"RFQWorkItem"> | string | null
   isKnownDefect?: Prisma.BoolFilter<"RFQWorkItem"> | boolean
   createdAt?: Prisma.DateTimeFilter<"RFQWorkItem"> | Date | string
+  rFQResponseId?: Prisma.StringNullableFilter<"RFQWorkItem"> | string | null
+  availableForContractors?: Prisma.BoolFilter<"RFQWorkItem"> | boolean
   rfq?: Prisma.XOR<Prisma.RFQScalarRelationFilter, Prisma.RFQWhereInput>
+  rfqresponse?: Prisma.XOR<Prisma.RFQResponseNullableScalarRelationFilter, Prisma.RFQResponseWhereInput> | null
+  contractRequests?: Prisma.ContractRequestListRelationFilter
 }
 
 export type RFQWorkItemOrderByWithRelationInput = {
@@ -252,7 +270,11 @@ export type RFQWorkItemOrderByWithRelationInput = {
   uom?: Prisma.SortOrderInput | Prisma.SortOrder
   isKnownDefect?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  rFQResponseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  availableForContractors?: Prisma.SortOrder
   rfq?: Prisma.RFQOrderByWithRelationInput
+  rfqresponse?: Prisma.RFQResponseOrderByWithRelationInput
+  contractRequests?: Prisma.contractRequestOrderByRelationAggregateInput
 }
 
 export type RFQWorkItemWhereUniqueInput = Prisma.AtLeast<{
@@ -267,7 +289,11 @@ export type RFQWorkItemWhereUniqueInput = Prisma.AtLeast<{
   uom?: Prisma.StringNullableFilter<"RFQWorkItem"> | string | null
   isKnownDefect?: Prisma.BoolFilter<"RFQWorkItem"> | boolean
   createdAt?: Prisma.DateTimeFilter<"RFQWorkItem"> | Date | string
+  rFQResponseId?: Prisma.StringNullableFilter<"RFQWorkItem"> | string | null
+  availableForContractors?: Prisma.BoolFilter<"RFQWorkItem"> | boolean
   rfq?: Prisma.XOR<Prisma.RFQScalarRelationFilter, Prisma.RFQWhereInput>
+  rfqresponse?: Prisma.XOR<Prisma.RFQResponseNullableScalarRelationFilter, Prisma.RFQResponseWhereInput> | null
+  contractRequests?: Prisma.ContractRequestListRelationFilter
 }, "id">
 
 export type RFQWorkItemOrderByWithAggregationInput = {
@@ -279,6 +305,8 @@ export type RFQWorkItemOrderByWithAggregationInput = {
   uom?: Prisma.SortOrderInput | Prisma.SortOrder
   isKnownDefect?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  rFQResponseId?: Prisma.SortOrderInput | Prisma.SortOrder
+  availableForContractors?: Prisma.SortOrder
   _count?: Prisma.RFQWorkItemCountOrderByAggregateInput
   _avg?: Prisma.RFQWorkItemAvgOrderByAggregateInput
   _max?: Prisma.RFQWorkItemMaxOrderByAggregateInput
@@ -298,6 +326,8 @@ export type RFQWorkItemScalarWhereWithAggregatesInput = {
   uom?: Prisma.StringNullableWithAggregatesFilter<"RFQWorkItem"> | string | null
   isKnownDefect?: Prisma.BoolWithAggregatesFilter<"RFQWorkItem"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"RFQWorkItem"> | Date | string
+  rFQResponseId?: Prisma.StringNullableWithAggregatesFilter<"RFQWorkItem"> | string | null
+  availableForContractors?: Prisma.BoolWithAggregatesFilter<"RFQWorkItem"> | boolean
 }
 
 export type RFQWorkItemCreateInput = {
@@ -308,7 +338,10 @@ export type RFQWorkItemCreateInput = {
   uom?: string | null
   isKnownDefect?: boolean
   createdAt?: Date | string
+  availableForContractors?: boolean
   rfq: Prisma.RFQCreateNestedOneWithoutWorkItemsInput
+  rfqresponse?: Prisma.RFQResponseCreateNestedOneWithoutAcceptedWorkItemsInput
+  contractRequests?: Prisma.contractRequestCreateNestedManyWithoutWorkItemInput
 }
 
 export type RFQWorkItemUncheckedCreateInput = {
@@ -320,6 +353,9 @@ export type RFQWorkItemUncheckedCreateInput = {
   uom?: string | null
   isKnownDefect?: boolean
   createdAt?: Date | string
+  rFQResponseId?: string | null
+  availableForContractors?: boolean
+  contractRequests?: Prisma.contractRequestUncheckedCreateNestedManyWithoutWorkItemInput
 }
 
 export type RFQWorkItemUpdateInput = {
@@ -330,7 +366,10 @@ export type RFQWorkItemUpdateInput = {
   uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
   rfq?: Prisma.RFQUpdateOneRequiredWithoutWorkItemsNestedInput
+  rfqresponse?: Prisma.RFQResponseUpdateOneWithoutAcceptedWorkItemsNestedInput
+  contractRequests?: Prisma.contractRequestUpdateManyWithoutWorkItemNestedInput
 }
 
 export type RFQWorkItemUncheckedUpdateInput = {
@@ -342,6 +381,9 @@ export type RFQWorkItemUncheckedUpdateInput = {
   uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rFQResponseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  contractRequests?: Prisma.contractRequestUncheckedUpdateManyWithoutWorkItemNestedInput
 }
 
 export type RFQWorkItemCreateManyInput = {
@@ -353,6 +395,8 @@ export type RFQWorkItemCreateManyInput = {
   uom?: string | null
   isKnownDefect?: boolean
   createdAt?: Date | string
+  rFQResponseId?: string | null
+  availableForContractors?: boolean
 }
 
 export type RFQWorkItemUpdateManyMutationInput = {
@@ -363,6 +407,7 @@ export type RFQWorkItemUpdateManyMutationInput = {
   uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type RFQWorkItemUncheckedUpdateManyInput = {
@@ -374,6 +419,8 @@ export type RFQWorkItemUncheckedUpdateManyInput = {
   uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rFQResponseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type RFQWorkItemListRelationFilter = {
@@ -395,6 +442,8 @@ export type RFQWorkItemCountOrderByAggregateInput = {
   uom?: Prisma.SortOrder
   isKnownDefect?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  rFQResponseId?: Prisma.SortOrder
+  availableForContractors?: Prisma.SortOrder
 }
 
 export type RFQWorkItemAvgOrderByAggregateInput = {
@@ -410,6 +459,8 @@ export type RFQWorkItemMaxOrderByAggregateInput = {
   uom?: Prisma.SortOrder
   isKnownDefect?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  rFQResponseId?: Prisma.SortOrder
+  availableForContractors?: Prisma.SortOrder
 }
 
 export type RFQWorkItemMinOrderByAggregateInput = {
@@ -421,10 +472,17 @@ export type RFQWorkItemMinOrderByAggregateInput = {
   uom?: Prisma.SortOrder
   isKnownDefect?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  rFQResponseId?: Prisma.SortOrder
+  availableForContractors?: Prisma.SortOrder
 }
 
 export type RFQWorkItemSumOrderByAggregateInput = {
   estimatedQty?: Prisma.SortOrder
+}
+
+export type RFQWorkItemNullableScalarRelationFilter = {
+  is?: Prisma.RFQWorkItemWhereInput | null
+  isNot?: Prisma.RFQWorkItemWhereInput | null
 }
 
 export type RFQWorkItemCreateNestedManyWithoutRfqInput = {
@@ -473,6 +531,64 @@ export type EnumWorkCategoryFieldUpdateOperationsInput = {
   set?: $Enums.WorkCategory
 }
 
+export type RFQWorkItemCreateNestedOneWithoutContractRequestsInput = {
+  create?: Prisma.XOR<Prisma.RFQWorkItemCreateWithoutContractRequestsInput, Prisma.RFQWorkItemUncheckedCreateWithoutContractRequestsInput>
+  connectOrCreate?: Prisma.RFQWorkItemCreateOrConnectWithoutContractRequestsInput
+  connect?: Prisma.RFQWorkItemWhereUniqueInput
+}
+
+export type RFQWorkItemUpdateOneWithoutContractRequestsNestedInput = {
+  create?: Prisma.XOR<Prisma.RFQWorkItemCreateWithoutContractRequestsInput, Prisma.RFQWorkItemUncheckedCreateWithoutContractRequestsInput>
+  connectOrCreate?: Prisma.RFQWorkItemCreateOrConnectWithoutContractRequestsInput
+  upsert?: Prisma.RFQWorkItemUpsertWithoutContractRequestsInput
+  disconnect?: Prisma.RFQWorkItemWhereInput | boolean
+  delete?: Prisma.RFQWorkItemWhereInput | boolean
+  connect?: Prisma.RFQWorkItemWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RFQWorkItemUpdateToOneWithWhereWithoutContractRequestsInput, Prisma.RFQWorkItemUpdateWithoutContractRequestsInput>, Prisma.RFQWorkItemUncheckedUpdateWithoutContractRequestsInput>
+}
+
+export type RFQWorkItemCreateNestedManyWithoutRfqresponseInput = {
+  create?: Prisma.XOR<Prisma.RFQWorkItemCreateWithoutRfqresponseInput, Prisma.RFQWorkItemUncheckedCreateWithoutRfqresponseInput> | Prisma.RFQWorkItemCreateWithoutRfqresponseInput[] | Prisma.RFQWorkItemUncheckedCreateWithoutRfqresponseInput[]
+  connectOrCreate?: Prisma.RFQWorkItemCreateOrConnectWithoutRfqresponseInput | Prisma.RFQWorkItemCreateOrConnectWithoutRfqresponseInput[]
+  createMany?: Prisma.RFQWorkItemCreateManyRfqresponseInputEnvelope
+  connect?: Prisma.RFQWorkItemWhereUniqueInput | Prisma.RFQWorkItemWhereUniqueInput[]
+}
+
+export type RFQWorkItemUncheckedCreateNestedManyWithoutRfqresponseInput = {
+  create?: Prisma.XOR<Prisma.RFQWorkItemCreateWithoutRfqresponseInput, Prisma.RFQWorkItemUncheckedCreateWithoutRfqresponseInput> | Prisma.RFQWorkItemCreateWithoutRfqresponseInput[] | Prisma.RFQWorkItemUncheckedCreateWithoutRfqresponseInput[]
+  connectOrCreate?: Prisma.RFQWorkItemCreateOrConnectWithoutRfqresponseInput | Prisma.RFQWorkItemCreateOrConnectWithoutRfqresponseInput[]
+  createMany?: Prisma.RFQWorkItemCreateManyRfqresponseInputEnvelope
+  connect?: Prisma.RFQWorkItemWhereUniqueInput | Prisma.RFQWorkItemWhereUniqueInput[]
+}
+
+export type RFQWorkItemUpdateManyWithoutRfqresponseNestedInput = {
+  create?: Prisma.XOR<Prisma.RFQWorkItemCreateWithoutRfqresponseInput, Prisma.RFQWorkItemUncheckedCreateWithoutRfqresponseInput> | Prisma.RFQWorkItemCreateWithoutRfqresponseInput[] | Prisma.RFQWorkItemUncheckedCreateWithoutRfqresponseInput[]
+  connectOrCreate?: Prisma.RFQWorkItemCreateOrConnectWithoutRfqresponseInput | Prisma.RFQWorkItemCreateOrConnectWithoutRfqresponseInput[]
+  upsert?: Prisma.RFQWorkItemUpsertWithWhereUniqueWithoutRfqresponseInput | Prisma.RFQWorkItemUpsertWithWhereUniqueWithoutRfqresponseInput[]
+  createMany?: Prisma.RFQWorkItemCreateManyRfqresponseInputEnvelope
+  set?: Prisma.RFQWorkItemWhereUniqueInput | Prisma.RFQWorkItemWhereUniqueInput[]
+  disconnect?: Prisma.RFQWorkItemWhereUniqueInput | Prisma.RFQWorkItemWhereUniqueInput[]
+  delete?: Prisma.RFQWorkItemWhereUniqueInput | Prisma.RFQWorkItemWhereUniqueInput[]
+  connect?: Prisma.RFQWorkItemWhereUniqueInput | Prisma.RFQWorkItemWhereUniqueInput[]
+  update?: Prisma.RFQWorkItemUpdateWithWhereUniqueWithoutRfqresponseInput | Prisma.RFQWorkItemUpdateWithWhereUniqueWithoutRfqresponseInput[]
+  updateMany?: Prisma.RFQWorkItemUpdateManyWithWhereWithoutRfqresponseInput | Prisma.RFQWorkItemUpdateManyWithWhereWithoutRfqresponseInput[]
+  deleteMany?: Prisma.RFQWorkItemScalarWhereInput | Prisma.RFQWorkItemScalarWhereInput[]
+}
+
+export type RFQWorkItemUncheckedUpdateManyWithoutRfqresponseNestedInput = {
+  create?: Prisma.XOR<Prisma.RFQWorkItemCreateWithoutRfqresponseInput, Prisma.RFQWorkItemUncheckedCreateWithoutRfqresponseInput> | Prisma.RFQWorkItemCreateWithoutRfqresponseInput[] | Prisma.RFQWorkItemUncheckedCreateWithoutRfqresponseInput[]
+  connectOrCreate?: Prisma.RFQWorkItemCreateOrConnectWithoutRfqresponseInput | Prisma.RFQWorkItemCreateOrConnectWithoutRfqresponseInput[]
+  upsert?: Prisma.RFQWorkItemUpsertWithWhereUniqueWithoutRfqresponseInput | Prisma.RFQWorkItemUpsertWithWhereUniqueWithoutRfqresponseInput[]
+  createMany?: Prisma.RFQWorkItemCreateManyRfqresponseInputEnvelope
+  set?: Prisma.RFQWorkItemWhereUniqueInput | Prisma.RFQWorkItemWhereUniqueInput[]
+  disconnect?: Prisma.RFQWorkItemWhereUniqueInput | Prisma.RFQWorkItemWhereUniqueInput[]
+  delete?: Prisma.RFQWorkItemWhereUniqueInput | Prisma.RFQWorkItemWhereUniqueInput[]
+  connect?: Prisma.RFQWorkItemWhereUniqueInput | Prisma.RFQWorkItemWhereUniqueInput[]
+  update?: Prisma.RFQWorkItemUpdateWithWhereUniqueWithoutRfqresponseInput | Prisma.RFQWorkItemUpdateWithWhereUniqueWithoutRfqresponseInput[]
+  updateMany?: Prisma.RFQWorkItemUpdateManyWithWhereWithoutRfqresponseInput | Prisma.RFQWorkItemUpdateManyWithWhereWithoutRfqresponseInput[]
+  deleteMany?: Prisma.RFQWorkItemScalarWhereInput | Prisma.RFQWorkItemScalarWhereInput[]
+}
+
 export type RFQWorkItemCreateWithoutRfqInput = {
   id?: string
   category: $Enums.WorkCategory
@@ -481,6 +597,9 @@ export type RFQWorkItemCreateWithoutRfqInput = {
   uom?: string | null
   isKnownDefect?: boolean
   createdAt?: Date | string
+  availableForContractors?: boolean
+  rfqresponse?: Prisma.RFQResponseCreateNestedOneWithoutAcceptedWorkItemsInput
+  contractRequests?: Prisma.contractRequestCreateNestedManyWithoutWorkItemInput
 }
 
 export type RFQWorkItemUncheckedCreateWithoutRfqInput = {
@@ -491,6 +610,9 @@ export type RFQWorkItemUncheckedCreateWithoutRfqInput = {
   uom?: string | null
   isKnownDefect?: boolean
   createdAt?: Date | string
+  rFQResponseId?: string | null
+  availableForContractors?: boolean
+  contractRequests?: Prisma.contractRequestUncheckedCreateNestedManyWithoutWorkItemInput
 }
 
 export type RFQWorkItemCreateOrConnectWithoutRfqInput = {
@@ -531,6 +653,128 @@ export type RFQWorkItemScalarWhereInput = {
   uom?: Prisma.StringNullableFilter<"RFQWorkItem"> | string | null
   isKnownDefect?: Prisma.BoolFilter<"RFQWorkItem"> | boolean
   createdAt?: Prisma.DateTimeFilter<"RFQWorkItem"> | Date | string
+  rFQResponseId?: Prisma.StringNullableFilter<"RFQWorkItem"> | string | null
+  availableForContractors?: Prisma.BoolFilter<"RFQWorkItem"> | boolean
+}
+
+export type RFQWorkItemCreateWithoutContractRequestsInput = {
+  id?: string
+  category: $Enums.WorkCategory
+  description: string
+  estimatedQty?: number | null
+  uom?: string | null
+  isKnownDefect?: boolean
+  createdAt?: Date | string
+  availableForContractors?: boolean
+  rfq: Prisma.RFQCreateNestedOneWithoutWorkItemsInput
+  rfqresponse?: Prisma.RFQResponseCreateNestedOneWithoutAcceptedWorkItemsInput
+}
+
+export type RFQWorkItemUncheckedCreateWithoutContractRequestsInput = {
+  id?: string
+  rfqId: string
+  category: $Enums.WorkCategory
+  description: string
+  estimatedQty?: number | null
+  uom?: string | null
+  isKnownDefect?: boolean
+  createdAt?: Date | string
+  rFQResponseId?: string | null
+  availableForContractors?: boolean
+}
+
+export type RFQWorkItemCreateOrConnectWithoutContractRequestsInput = {
+  where: Prisma.RFQWorkItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.RFQWorkItemCreateWithoutContractRequestsInput, Prisma.RFQWorkItemUncheckedCreateWithoutContractRequestsInput>
+}
+
+export type RFQWorkItemUpsertWithoutContractRequestsInput = {
+  update: Prisma.XOR<Prisma.RFQWorkItemUpdateWithoutContractRequestsInput, Prisma.RFQWorkItemUncheckedUpdateWithoutContractRequestsInput>
+  create: Prisma.XOR<Prisma.RFQWorkItemCreateWithoutContractRequestsInput, Prisma.RFQWorkItemUncheckedCreateWithoutContractRequestsInput>
+  where?: Prisma.RFQWorkItemWhereInput
+}
+
+export type RFQWorkItemUpdateToOneWithWhereWithoutContractRequestsInput = {
+  where?: Prisma.RFQWorkItemWhereInput
+  data: Prisma.XOR<Prisma.RFQWorkItemUpdateWithoutContractRequestsInput, Prisma.RFQWorkItemUncheckedUpdateWithoutContractRequestsInput>
+}
+
+export type RFQWorkItemUpdateWithoutContractRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumWorkCategoryFieldUpdateOperationsInput | $Enums.WorkCategory
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  estimatedQty?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rfq?: Prisma.RFQUpdateOneRequiredWithoutWorkItemsNestedInput
+  rfqresponse?: Prisma.RFQResponseUpdateOneWithoutAcceptedWorkItemsNestedInput
+}
+
+export type RFQWorkItemUncheckedUpdateWithoutContractRequestsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rfqId?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumWorkCategoryFieldUpdateOperationsInput | $Enums.WorkCategory
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  estimatedQty?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rFQResponseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type RFQWorkItemCreateWithoutRfqresponseInput = {
+  id?: string
+  category: $Enums.WorkCategory
+  description: string
+  estimatedQty?: number | null
+  uom?: string | null
+  isKnownDefect?: boolean
+  createdAt?: Date | string
+  availableForContractors?: boolean
+  rfq: Prisma.RFQCreateNestedOneWithoutWorkItemsInput
+  contractRequests?: Prisma.contractRequestCreateNestedManyWithoutWorkItemInput
+}
+
+export type RFQWorkItemUncheckedCreateWithoutRfqresponseInput = {
+  id?: string
+  rfqId: string
+  category: $Enums.WorkCategory
+  description: string
+  estimatedQty?: number | null
+  uom?: string | null
+  isKnownDefect?: boolean
+  createdAt?: Date | string
+  availableForContractors?: boolean
+  contractRequests?: Prisma.contractRequestUncheckedCreateNestedManyWithoutWorkItemInput
+}
+
+export type RFQWorkItemCreateOrConnectWithoutRfqresponseInput = {
+  where: Prisma.RFQWorkItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.RFQWorkItemCreateWithoutRfqresponseInput, Prisma.RFQWorkItemUncheckedCreateWithoutRfqresponseInput>
+}
+
+export type RFQWorkItemCreateManyRfqresponseInputEnvelope = {
+  data: Prisma.RFQWorkItemCreateManyRfqresponseInput | Prisma.RFQWorkItemCreateManyRfqresponseInput[]
+  skipDuplicates?: boolean
+}
+
+export type RFQWorkItemUpsertWithWhereUniqueWithoutRfqresponseInput = {
+  where: Prisma.RFQWorkItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.RFQWorkItemUpdateWithoutRfqresponseInput, Prisma.RFQWorkItemUncheckedUpdateWithoutRfqresponseInput>
+  create: Prisma.XOR<Prisma.RFQWorkItemCreateWithoutRfqresponseInput, Prisma.RFQWorkItemUncheckedCreateWithoutRfqresponseInput>
+}
+
+export type RFQWorkItemUpdateWithWhereUniqueWithoutRfqresponseInput = {
+  where: Prisma.RFQWorkItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.RFQWorkItemUpdateWithoutRfqresponseInput, Prisma.RFQWorkItemUncheckedUpdateWithoutRfqresponseInput>
+}
+
+export type RFQWorkItemUpdateManyWithWhereWithoutRfqresponseInput = {
+  where: Prisma.RFQWorkItemScalarWhereInput
+  data: Prisma.XOR<Prisma.RFQWorkItemUpdateManyMutationInput, Prisma.RFQWorkItemUncheckedUpdateManyWithoutRfqresponseInput>
 }
 
 export type RFQWorkItemCreateManyRfqInput = {
@@ -541,6 +785,8 @@ export type RFQWorkItemCreateManyRfqInput = {
   uom?: string | null
   isKnownDefect?: boolean
   createdAt?: Date | string
+  rFQResponseId?: string | null
+  availableForContractors?: boolean
 }
 
 export type RFQWorkItemUpdateWithoutRfqInput = {
@@ -551,6 +797,9 @@ export type RFQWorkItemUpdateWithoutRfqInput = {
   uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rfqresponse?: Prisma.RFQResponseUpdateOneWithoutAcceptedWorkItemsNestedInput
+  contractRequests?: Prisma.contractRequestUpdateManyWithoutWorkItemNestedInput
 }
 
 export type RFQWorkItemUncheckedUpdateWithoutRfqInput = {
@@ -561,6 +810,9 @@ export type RFQWorkItemUncheckedUpdateWithoutRfqInput = {
   uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rFQResponseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  contractRequests?: Prisma.contractRequestUncheckedUpdateManyWithoutWorkItemNestedInput
 }
 
 export type RFQWorkItemUncheckedUpdateManyWithoutRfqInput = {
@@ -571,8 +823,89 @@ export type RFQWorkItemUncheckedUpdateManyWithoutRfqInput = {
   uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rFQResponseId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
+export type RFQWorkItemCreateManyRfqresponseInput = {
+  id?: string
+  rfqId: string
+  category: $Enums.WorkCategory
+  description: string
+  estimatedQty?: number | null
+  uom?: string | null
+  isKnownDefect?: boolean
+  createdAt?: Date | string
+  availableForContractors?: boolean
+}
+
+export type RFQWorkItemUpdateWithoutRfqresponseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumWorkCategoryFieldUpdateOperationsInput | $Enums.WorkCategory
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  estimatedQty?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  rfq?: Prisma.RFQUpdateOneRequiredWithoutWorkItemsNestedInput
+  contractRequests?: Prisma.contractRequestUpdateManyWithoutWorkItemNestedInput
+}
+
+export type RFQWorkItemUncheckedUpdateWithoutRfqresponseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rfqId?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumWorkCategoryFieldUpdateOperationsInput | $Enums.WorkCategory
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  estimatedQty?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  contractRequests?: Prisma.contractRequestUncheckedUpdateManyWithoutWorkItemNestedInput
+}
+
+export type RFQWorkItemUncheckedUpdateManyWithoutRfqresponseInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  rfqId?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.EnumWorkCategoryFieldUpdateOperationsInput | $Enums.WorkCategory
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  estimatedQty?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  uom?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isKnownDefect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  availableForContractors?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+
+/**
+ * Count Type RFQWorkItemCountOutputType
+ */
+
+export type RFQWorkItemCountOutputType = {
+  contractRequests: number
+}
+
+export type RFQWorkItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  contractRequests?: boolean | RFQWorkItemCountOutputTypeCountContractRequestsArgs
+}
+
+/**
+ * RFQWorkItemCountOutputType without action
+ */
+export type RFQWorkItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RFQWorkItemCountOutputType
+   */
+  select?: Prisma.RFQWorkItemCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * RFQWorkItemCountOutputType without action
+ */
+export type RFQWorkItemCountOutputTypeCountContractRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.contractRequestWhereInput
+}
 
 
 export type RFQWorkItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -584,7 +917,12 @@ export type RFQWorkItemSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   uom?: boolean
   isKnownDefect?: boolean
   createdAt?: boolean
+  rFQResponseId?: boolean
+  availableForContractors?: boolean
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQWorkItem$rfqresponseArgs<ExtArgs>
+  contractRequests?: boolean | Prisma.RFQWorkItem$contractRequestsArgs<ExtArgs>
+  _count?: boolean | Prisma.RFQWorkItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["rFQWorkItem"]>
 
 export type RFQWorkItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -596,7 +934,10 @@ export type RFQWorkItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   uom?: boolean
   isKnownDefect?: boolean
   createdAt?: boolean
+  rFQResponseId?: boolean
+  availableForContractors?: boolean
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQWorkItem$rfqresponseArgs<ExtArgs>
 }, ExtArgs["result"]["rFQWorkItem"]>
 
 export type RFQWorkItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -608,7 +949,10 @@ export type RFQWorkItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   uom?: boolean
   isKnownDefect?: boolean
   createdAt?: boolean
+  rFQResponseId?: boolean
+  availableForContractors?: boolean
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQWorkItem$rfqresponseArgs<ExtArgs>
 }, ExtArgs["result"]["rFQWorkItem"]>
 
 export type RFQWorkItemSelectScalar = {
@@ -620,23 +964,32 @@ export type RFQWorkItemSelectScalar = {
   uom?: boolean
   isKnownDefect?: boolean
   createdAt?: boolean
+  rFQResponseId?: boolean
+  availableForContractors?: boolean
 }
 
-export type RFQWorkItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "rfqId" | "category" | "description" | "estimatedQty" | "uom" | "isKnownDefect" | "createdAt", ExtArgs["result"]["rFQWorkItem"]>
+export type RFQWorkItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "rfqId" | "category" | "description" | "estimatedQty" | "uom" | "isKnownDefect" | "createdAt" | "rFQResponseId" | "availableForContractors", ExtArgs["result"]["rFQWorkItem"]>
 export type RFQWorkItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQWorkItem$rfqresponseArgs<ExtArgs>
+  contractRequests?: boolean | Prisma.RFQWorkItem$contractRequestsArgs<ExtArgs>
+  _count?: boolean | Prisma.RFQWorkItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RFQWorkItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQWorkItem$rfqresponseArgs<ExtArgs>
 }
 export type RFQWorkItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rfq?: boolean | Prisma.RFQDefaultArgs<ExtArgs>
+  rfqresponse?: boolean | Prisma.RFQWorkItem$rfqresponseArgs<ExtArgs>
 }
 
 export type $RFQWorkItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "RFQWorkItem"
   objects: {
     rfq: Prisma.$RFQPayload<ExtArgs>
+    rfqresponse: Prisma.$RFQResponsePayload<ExtArgs> | null
+    contractRequests: Prisma.$contractRequestPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -647,6 +1000,8 @@ export type $RFQWorkItemPayload<ExtArgs extends runtime.Types.Extensions.Interna
     uom: string | null
     isKnownDefect: boolean
     createdAt: Date
+    rFQResponseId: string | null
+    availableForContractors: boolean
   }, ExtArgs["result"]["rFQWorkItem"]>
   composites: {}
 }
@@ -1042,6 +1397,8 @@ readonly fields: RFQWorkItemFieldRefs;
 export interface Prisma__RFQWorkItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   rfq<T extends Prisma.RFQDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQDefaultArgs<ExtArgs>>): Prisma.Prisma__RFQClient<runtime.Types.Result.GetResult<Prisma.$RFQPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  rfqresponse<T extends Prisma.RFQWorkItem$rfqresponseArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQWorkItem$rfqresponseArgs<ExtArgs>>): Prisma.Prisma__RFQResponseClient<runtime.Types.Result.GetResult<Prisma.$RFQResponsePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  contractRequests<T extends Prisma.RFQWorkItem$contractRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQWorkItem$contractRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$contractRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1079,6 +1436,8 @@ export interface RFQWorkItemFieldRefs {
   readonly uom: Prisma.FieldRef<"RFQWorkItem", 'String'>
   readonly isKnownDefect: Prisma.FieldRef<"RFQWorkItem", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"RFQWorkItem", 'DateTime'>
+  readonly rFQResponseId: Prisma.FieldRef<"RFQWorkItem", 'String'>
+  readonly availableForContractors: Prisma.FieldRef<"RFQWorkItem", 'Boolean'>
 }
     
 
@@ -1477,6 +1836,49 @@ export type RFQWorkItemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many RFQWorkItems to delete.
    */
   limit?: number
+}
+
+/**
+ * RFQWorkItem.rfqresponse
+ */
+export type RFQWorkItem$rfqresponseArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RFQResponse
+   */
+  select?: Prisma.RFQResponseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RFQResponse
+   */
+  omit?: Prisma.RFQResponseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RFQResponseInclude<ExtArgs> | null
+  where?: Prisma.RFQResponseWhereInput
+}
+
+/**
+ * RFQWorkItem.contractRequests
+ */
+export type RFQWorkItem$contractRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the contractRequest
+   */
+  select?: Prisma.contractRequestSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the contractRequest
+   */
+  omit?: Prisma.contractRequestOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.contractRequestInclude<ExtArgs> | null
+  where?: Prisma.contractRequestWhereInput
+  orderBy?: Prisma.contractRequestOrderByWithRelationInput | Prisma.contractRequestOrderByWithRelationInput[]
+  cursor?: Prisma.contractRequestWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContractRequestScalarFieldEnum | Prisma.ContractRequestScalarFieldEnum[]
 }
 
 /**

@@ -57,3 +57,21 @@ export const ContractStatus = {
 } as const
 
 export type ContractStatus = (typeof ContractStatus)[keyof typeof ContractStatus]
+
+
+export const ContractRequestStatus = {
+  pending: 'pending',
+  accepted: 'accepted',
+  rejected: 'rejected'
+} as const
+
+export type ContractRequestStatus = (typeof ContractRequestStatus)[keyof typeof ContractRequestStatus]
+
+
+export const RFQResponseStatus = {
+  pending: 'pending',
+  accepted: 'accepted',
+  rejected: 'rejected'
+} as const
+
+export type RFQResponseStatus = (typeof RFQResponseStatus)[keyof typeof RFQResponseStatus]

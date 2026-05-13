@@ -46,6 +46,7 @@ export type RFQSumAggregateOutputType = {
 
 export type RFQMinAggregateOutputType = {
   id: string | null
+  requesterId: string | null
   vesselId: string | null
   vesselName: string | null
   imoNumber: string | null
@@ -66,6 +67,7 @@ export type RFQMinAggregateOutputType = {
 
 export type RFQMaxAggregateOutputType = {
   id: string | null
+  requesterId: string | null
   vesselId: string | null
   vesselName: string | null
   imoNumber: string | null
@@ -86,6 +88,7 @@ export type RFQMaxAggregateOutputType = {
 
 export type RFQCountAggregateOutputType = {
   id: number
+  requesterId: number
   vesselId: number
   vesselName: number
   imoNumber: number
@@ -126,6 +129,7 @@ export type RFQSumAggregateInputType = {
 
 export type RFQMinAggregateInputType = {
   id?: true
+  requesterId?: true
   vesselId?: true
   vesselName?: true
   imoNumber?: true
@@ -146,6 +150,7 @@ export type RFQMinAggregateInputType = {
 
 export type RFQMaxAggregateInputType = {
   id?: true
+  requesterId?: true
   vesselId?: true
   vesselName?: true
   imoNumber?: true
@@ -166,6 +171,7 @@ export type RFQMaxAggregateInputType = {
 
 export type RFQCountAggregateInputType = {
   id?: true
+  requesterId?: true
   vesselId?: true
   vesselName?: true
   imoNumber?: true
@@ -273,6 +279,7 @@ export type RFQGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type RFQGroupByOutputType = {
   id: string
+  requesterId: string
   vesselId: string
   vesselName: string
   imoNumber: string
@@ -316,6 +323,7 @@ export type RFQWhereInput = {
   OR?: Prisma.RFQWhereInput[]
   NOT?: Prisma.RFQWhereInput | Prisma.RFQWhereInput[]
   id?: Prisma.StringFilter<"RFQ"> | string
+  requesterId?: Prisma.StringFilter<"RFQ"> | string
   vesselId?: Prisma.StringFilter<"RFQ"> | string
   vesselName?: Prisma.StringFilter<"RFQ"> | string
   imoNumber?: Prisma.StringFilter<"RFQ"> | string
@@ -335,10 +343,12 @@ export type RFQWhereInput = {
   yard?: Prisma.XOR<Prisma.YardScalarRelationFilter, Prisma.YardWhereInput>
   workItems?: Prisma.RFQWorkItemListRelationFilter
   surveys?: Prisma.RFQSurveyListRelationFilter
+  rfqresponses?: Prisma.RFQResponseListRelationFilter
 }
 
 export type RFQOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  requesterId?: Prisma.SortOrder
   vesselId?: Prisma.SortOrder
   vesselName?: Prisma.SortOrder
   imoNumber?: Prisma.SortOrder
@@ -358,6 +368,7 @@ export type RFQOrderByWithRelationInput = {
   yard?: Prisma.YardOrderByWithRelationInput
   workItems?: Prisma.RFQWorkItemOrderByRelationAggregateInput
   surveys?: Prisma.RFQSurveyOrderByRelationAggregateInput
+  rfqresponses?: Prisma.RFQResponseOrderByRelationAggregateInput
 }
 
 export type RFQWhereUniqueInput = Prisma.AtLeast<{
@@ -365,6 +376,7 @@ export type RFQWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RFQWhereInput | Prisma.RFQWhereInput[]
   OR?: Prisma.RFQWhereInput[]
   NOT?: Prisma.RFQWhereInput | Prisma.RFQWhereInput[]
+  requesterId?: Prisma.StringFilter<"RFQ"> | string
   vesselId?: Prisma.StringFilter<"RFQ"> | string
   vesselName?: Prisma.StringFilter<"RFQ"> | string
   imoNumber?: Prisma.StringFilter<"RFQ"> | string
@@ -384,10 +396,12 @@ export type RFQWhereUniqueInput = Prisma.AtLeast<{
   yard?: Prisma.XOR<Prisma.YardScalarRelationFilter, Prisma.YardWhereInput>
   workItems?: Prisma.RFQWorkItemListRelationFilter
   surveys?: Prisma.RFQSurveyListRelationFilter
+  rfqresponses?: Prisma.RFQResponseListRelationFilter
 }, "id">
 
 export type RFQOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  requesterId?: Prisma.SortOrder
   vesselId?: Prisma.SortOrder
   vesselName?: Prisma.SortOrder
   imoNumber?: Prisma.SortOrder
@@ -416,6 +430,7 @@ export type RFQScalarWhereWithAggregatesInput = {
   OR?: Prisma.RFQScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RFQScalarWhereWithAggregatesInput | Prisma.RFQScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"RFQ"> | string
+  requesterId?: Prisma.StringWithAggregatesFilter<"RFQ"> | string
   vesselId?: Prisma.StringWithAggregatesFilter<"RFQ"> | string
   vesselName?: Prisma.StringWithAggregatesFilter<"RFQ"> | string
   imoNumber?: Prisma.StringWithAggregatesFilter<"RFQ"> | string
@@ -436,6 +451,7 @@ export type RFQScalarWhereWithAggregatesInput = {
 
 export type RFQCreateInput = {
   id?: string
+  requesterId: string
   vesselId: string
   vesselName: string
   imoNumber: string
@@ -454,10 +470,12 @@ export type RFQCreateInput = {
   yard: Prisma.YardCreateNestedOneWithoutRfqsInput
   workItems?: Prisma.RFQWorkItemCreateNestedManyWithoutRfqInput
   surveys?: Prisma.RFQSurveyCreateNestedManyWithoutRfqInput
+  rfqresponses?: Prisma.RFQResponseCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateInput = {
   id?: string
+  requesterId: string
   vesselId: string
   vesselName: string
   imoNumber: string
@@ -476,10 +494,12 @@ export type RFQUncheckedCreateInput = {
   updatedAt?: Date | string
   workItems?: Prisma.RFQWorkItemUncheckedCreateNestedManyWithoutRfqInput
   surveys?: Prisma.RFQSurveyUncheckedCreateNestedManyWithoutRfqInput
+  rfqresponses?: Prisma.RFQResponseUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselName?: Prisma.StringFieldUpdateOperationsInput | string
   imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -498,10 +518,12 @@ export type RFQUpdateInput = {
   yard?: Prisma.YardUpdateOneRequiredWithoutRfqsNestedInput
   workItems?: Prisma.RFQWorkItemUpdateManyWithoutRfqNestedInput
   surveys?: Prisma.RFQSurveyUpdateManyWithoutRfqNestedInput
+  rfqresponses?: Prisma.RFQResponseUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselName?: Prisma.StringFieldUpdateOperationsInput | string
   imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -520,10 +542,12 @@ export type RFQUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workItems?: Prisma.RFQWorkItemUncheckedUpdateManyWithoutRfqNestedInput
   surveys?: Prisma.RFQSurveyUncheckedUpdateManyWithoutRfqNestedInput
+  rfqresponses?: Prisma.RFQResponseUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQCreateManyInput = {
   id?: string
+  requesterId: string
   vesselId: string
   vesselName: string
   imoNumber: string
@@ -544,6 +568,7 @@ export type RFQCreateManyInput = {
 
 export type RFQUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselName?: Prisma.StringFieldUpdateOperationsInput | string
   imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -563,6 +588,7 @@ export type RFQUpdateManyMutationInput = {
 
 export type RFQUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselName?: Prisma.StringFieldUpdateOperationsInput | string
   imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -593,6 +619,7 @@ export type RFQOrderByRelationAggregateInput = {
 
 export type RFQCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  requesterId?: Prisma.SortOrder
   vesselId?: Prisma.SortOrder
   vesselName?: Prisma.SortOrder
   imoNumber?: Prisma.SortOrder
@@ -622,6 +649,7 @@ export type RFQAvgOrderByAggregateInput = {
 
 export type RFQMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  requesterId?: Prisma.SortOrder
   vesselId?: Prisma.SortOrder
   vesselName?: Prisma.SortOrder
   imoNumber?: Prisma.SortOrder
@@ -642,6 +670,7 @@ export type RFQMaxOrderByAggregateInput = {
 
 export type RFQMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  requesterId?: Prisma.SortOrder
   vesselId?: Prisma.SortOrder
   vesselName?: Prisma.SortOrder
   imoNumber?: Prisma.SortOrder
@@ -764,8 +793,23 @@ export type RFQUpdateOneRequiredWithoutSurveysNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RFQUpdateToOneWithWhereWithoutSurveysInput, Prisma.RFQUpdateWithoutSurveysInput>, Prisma.RFQUncheckedUpdateWithoutSurveysInput>
 }
 
+export type RFQCreateNestedOneWithoutRfqresponsesInput = {
+  create?: Prisma.XOR<Prisma.RFQCreateWithoutRfqresponsesInput, Prisma.RFQUncheckedCreateWithoutRfqresponsesInput>
+  connectOrCreate?: Prisma.RFQCreateOrConnectWithoutRfqresponsesInput
+  connect?: Prisma.RFQWhereUniqueInput
+}
+
+export type RFQUpdateOneRequiredWithoutRfqresponsesNestedInput = {
+  create?: Prisma.XOR<Prisma.RFQCreateWithoutRfqresponsesInput, Prisma.RFQUncheckedCreateWithoutRfqresponsesInput>
+  connectOrCreate?: Prisma.RFQCreateOrConnectWithoutRfqresponsesInput
+  upsert?: Prisma.RFQUpsertWithoutRfqresponsesInput
+  connect?: Prisma.RFQWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.RFQUpdateToOneWithWhereWithoutRfqresponsesInput, Prisma.RFQUpdateWithoutRfqresponsesInput>, Prisma.RFQUncheckedUpdateWithoutRfqresponsesInput>
+}
+
 export type RFQCreateWithoutYardInput = {
   id?: string
+  requesterId: string
   vesselId: string
   vesselName: string
   imoNumber: string
@@ -783,10 +827,12 @@ export type RFQCreateWithoutYardInput = {
   updatedAt?: Date | string
   workItems?: Prisma.RFQWorkItemCreateNestedManyWithoutRfqInput
   surveys?: Prisma.RFQSurveyCreateNestedManyWithoutRfqInput
+  rfqresponses?: Prisma.RFQResponseCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateWithoutYardInput = {
   id?: string
+  requesterId: string
   vesselId: string
   vesselName: string
   imoNumber: string
@@ -804,6 +850,7 @@ export type RFQUncheckedCreateWithoutYardInput = {
   updatedAt?: Date | string
   workItems?: Prisma.RFQWorkItemUncheckedCreateNestedManyWithoutRfqInput
   surveys?: Prisma.RFQSurveyUncheckedCreateNestedManyWithoutRfqInput
+  rfqresponses?: Prisma.RFQResponseUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQCreateOrConnectWithoutYardInput = {
@@ -837,6 +884,7 @@ export type RFQScalarWhereInput = {
   OR?: Prisma.RFQScalarWhereInput[]
   NOT?: Prisma.RFQScalarWhereInput | Prisma.RFQScalarWhereInput[]
   id?: Prisma.StringFilter<"RFQ"> | string
+  requesterId?: Prisma.StringFilter<"RFQ"> | string
   vesselId?: Prisma.StringFilter<"RFQ"> | string
   vesselName?: Prisma.StringFilter<"RFQ"> | string
   imoNumber?: Prisma.StringFilter<"RFQ"> | string
@@ -857,6 +905,7 @@ export type RFQScalarWhereInput = {
 
 export type RFQCreateWithoutWorkItemsInput = {
   id?: string
+  requesterId: string
   vesselId: string
   vesselName: string
   imoNumber: string
@@ -874,10 +923,12 @@ export type RFQCreateWithoutWorkItemsInput = {
   updatedAt?: Date | string
   yard: Prisma.YardCreateNestedOneWithoutRfqsInput
   surveys?: Prisma.RFQSurveyCreateNestedManyWithoutRfqInput
+  rfqresponses?: Prisma.RFQResponseCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateWithoutWorkItemsInput = {
   id?: string
+  requesterId: string
   vesselId: string
   vesselName: string
   imoNumber: string
@@ -895,6 +946,7 @@ export type RFQUncheckedCreateWithoutWorkItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   surveys?: Prisma.RFQSurveyUncheckedCreateNestedManyWithoutRfqInput
+  rfqresponses?: Prisma.RFQResponseUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQCreateOrConnectWithoutWorkItemsInput = {
@@ -915,6 +967,7 @@ export type RFQUpdateToOneWithWhereWithoutWorkItemsInput = {
 
 export type RFQUpdateWithoutWorkItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselName?: Prisma.StringFieldUpdateOperationsInput | string
   imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -932,10 +985,12 @@ export type RFQUpdateWithoutWorkItemsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   yard?: Prisma.YardUpdateOneRequiredWithoutRfqsNestedInput
   surveys?: Prisma.RFQSurveyUpdateManyWithoutRfqNestedInput
+  rfqresponses?: Prisma.RFQResponseUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateWithoutWorkItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselName?: Prisma.StringFieldUpdateOperationsInput | string
   imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -953,10 +1008,12 @@ export type RFQUncheckedUpdateWithoutWorkItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   surveys?: Prisma.RFQSurveyUncheckedUpdateManyWithoutRfqNestedInput
+  rfqresponses?: Prisma.RFQResponseUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQCreateWithoutSurveysInput = {
   id?: string
+  requesterId: string
   vesselId: string
   vesselName: string
   imoNumber: string
@@ -974,10 +1031,12 @@ export type RFQCreateWithoutSurveysInput = {
   updatedAt?: Date | string
   yard: Prisma.YardCreateNestedOneWithoutRfqsInput
   workItems?: Prisma.RFQWorkItemCreateNestedManyWithoutRfqInput
+  rfqresponses?: Prisma.RFQResponseCreateNestedManyWithoutRfqInput
 }
 
 export type RFQUncheckedCreateWithoutSurveysInput = {
   id?: string
+  requesterId: string
   vesselId: string
   vesselName: string
   imoNumber: string
@@ -995,6 +1054,7 @@ export type RFQUncheckedCreateWithoutSurveysInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   workItems?: Prisma.RFQWorkItemUncheckedCreateNestedManyWithoutRfqInput
+  rfqresponses?: Prisma.RFQResponseUncheckedCreateNestedManyWithoutRfqInput
 }
 
 export type RFQCreateOrConnectWithoutSurveysInput = {
@@ -1015,6 +1075,7 @@ export type RFQUpdateToOneWithWhereWithoutSurveysInput = {
 
 export type RFQUpdateWithoutSurveysInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselName?: Prisma.StringFieldUpdateOperationsInput | string
   imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1032,10 +1093,12 @@ export type RFQUpdateWithoutSurveysInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   yard?: Prisma.YardUpdateOneRequiredWithoutRfqsNestedInput
   workItems?: Prisma.RFQWorkItemUpdateManyWithoutRfqNestedInput
+  rfqresponses?: Prisma.RFQResponseUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateWithoutSurveysInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselName?: Prisma.StringFieldUpdateOperationsInput | string
   imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1053,10 +1116,120 @@ export type RFQUncheckedUpdateWithoutSurveysInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workItems?: Prisma.RFQWorkItemUncheckedUpdateManyWithoutRfqNestedInput
+  rfqresponses?: Prisma.RFQResponseUncheckedUpdateManyWithoutRfqNestedInput
+}
+
+export type RFQCreateWithoutRfqresponsesInput = {
+  id?: string
+  requesterId: string
+  vesselId: string
+  vesselName: string
+  imoNumber: string
+  vesselType?: string | null
+  loa?: number | null
+  beam?: number | null
+  draft?: number | null
+  dwt?: number | null
+  classSociety?: string | null
+  dockingType: $Enums.DockingType
+  preferredStart: Date | string
+  flexibilityDays?: number | null
+  estimatedDuration?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  yard: Prisma.YardCreateNestedOneWithoutRfqsInput
+  workItems?: Prisma.RFQWorkItemCreateNestedManyWithoutRfqInput
+  surveys?: Prisma.RFQSurveyCreateNestedManyWithoutRfqInput
+}
+
+export type RFQUncheckedCreateWithoutRfqresponsesInput = {
+  id?: string
+  requesterId: string
+  vesselId: string
+  vesselName: string
+  imoNumber: string
+  vesselType?: string | null
+  yardId: string
+  loa?: number | null
+  beam?: number | null
+  draft?: number | null
+  dwt?: number | null
+  classSociety?: string | null
+  dockingType: $Enums.DockingType
+  preferredStart: Date | string
+  flexibilityDays?: number | null
+  estimatedDuration?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  workItems?: Prisma.RFQWorkItemUncheckedCreateNestedManyWithoutRfqInput
+  surveys?: Prisma.RFQSurveyUncheckedCreateNestedManyWithoutRfqInput
+}
+
+export type RFQCreateOrConnectWithoutRfqresponsesInput = {
+  where: Prisma.RFQWhereUniqueInput
+  create: Prisma.XOR<Prisma.RFQCreateWithoutRfqresponsesInput, Prisma.RFQUncheckedCreateWithoutRfqresponsesInput>
+}
+
+export type RFQUpsertWithoutRfqresponsesInput = {
+  update: Prisma.XOR<Prisma.RFQUpdateWithoutRfqresponsesInput, Prisma.RFQUncheckedUpdateWithoutRfqresponsesInput>
+  create: Prisma.XOR<Prisma.RFQCreateWithoutRfqresponsesInput, Prisma.RFQUncheckedCreateWithoutRfqresponsesInput>
+  where?: Prisma.RFQWhereInput
+}
+
+export type RFQUpdateToOneWithWhereWithoutRfqresponsesInput = {
+  where?: Prisma.RFQWhereInput
+  data: Prisma.XOR<Prisma.RFQUpdateWithoutRfqresponsesInput, Prisma.RFQUncheckedUpdateWithoutRfqresponsesInput>
+}
+
+export type RFQUpdateWithoutRfqresponsesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
+  vesselId?: Prisma.StringFieldUpdateOperationsInput | string
+  vesselName?: Prisma.StringFieldUpdateOperationsInput | string
+  imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  vesselType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  loa?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  beam?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  draft?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  dwt?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  classSociety?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dockingType?: Prisma.EnumDockingTypeFieldUpdateOperationsInput | $Enums.DockingType
+  preferredStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  flexibilityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  estimatedDuration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  yard?: Prisma.YardUpdateOneRequiredWithoutRfqsNestedInput
+  workItems?: Prisma.RFQWorkItemUpdateManyWithoutRfqNestedInput
+  surveys?: Prisma.RFQSurveyUpdateManyWithoutRfqNestedInput
+}
+
+export type RFQUncheckedUpdateWithoutRfqresponsesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
+  vesselId?: Prisma.StringFieldUpdateOperationsInput | string
+  vesselName?: Prisma.StringFieldUpdateOperationsInput | string
+  imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  vesselType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  yardId?: Prisma.StringFieldUpdateOperationsInput | string
+  loa?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  beam?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  draft?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  dwt?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  classSociety?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dockingType?: Prisma.EnumDockingTypeFieldUpdateOperationsInput | $Enums.DockingType
+  preferredStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  flexibilityDays?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  estimatedDuration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workItems?: Prisma.RFQWorkItemUncheckedUpdateManyWithoutRfqNestedInput
+  surveys?: Prisma.RFQSurveyUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQCreateManyYardInput = {
   id?: string
+  requesterId: string
   vesselId: string
   vesselName: string
   imoNumber: string
@@ -1076,6 +1249,7 @@ export type RFQCreateManyYardInput = {
 
 export type RFQUpdateWithoutYardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselName?: Prisma.StringFieldUpdateOperationsInput | string
   imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1093,10 +1267,12 @@ export type RFQUpdateWithoutYardInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workItems?: Prisma.RFQWorkItemUpdateManyWithoutRfqNestedInput
   surveys?: Prisma.RFQSurveyUpdateManyWithoutRfqNestedInput
+  rfqresponses?: Prisma.RFQResponseUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateWithoutYardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselName?: Prisma.StringFieldUpdateOperationsInput | string
   imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1114,10 +1290,12 @@ export type RFQUncheckedUpdateWithoutYardInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workItems?: Prisma.RFQWorkItemUncheckedUpdateManyWithoutRfqNestedInput
   surveys?: Prisma.RFQSurveyUncheckedUpdateManyWithoutRfqNestedInput
+  rfqresponses?: Prisma.RFQResponseUncheckedUpdateManyWithoutRfqNestedInput
 }
 
 export type RFQUncheckedUpdateManyWithoutYardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  requesterId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselId?: Prisma.StringFieldUpdateOperationsInput | string
   vesselName?: Prisma.StringFieldUpdateOperationsInput | string
   imoNumber?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1143,11 +1321,13 @@ export type RFQUncheckedUpdateManyWithoutYardInput = {
 export type RFQCountOutputType = {
   workItems: number
   surveys: number
+  rfqresponses: number
 }
 
 export type RFQCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workItems?: boolean | RFQCountOutputTypeCountWorkItemsArgs
   surveys?: boolean | RFQCountOutputTypeCountSurveysArgs
+  rfqresponses?: boolean | RFQCountOutputTypeCountRfqresponsesArgs
 }
 
 /**
@@ -1174,9 +1354,17 @@ export type RFQCountOutputTypeCountSurveysArgs<ExtArgs extends runtime.Types.Ext
   where?: Prisma.RFQSurveyWhereInput
 }
 
+/**
+ * RFQCountOutputType without action
+ */
+export type RFQCountOutputTypeCountRfqresponsesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RFQResponseWhereInput
+}
+
 
 export type RFQSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  requesterId?: boolean
   vesselId?: boolean
   vesselName?: boolean
   imoNumber?: boolean
@@ -1196,11 +1384,13 @@ export type RFQSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   yard?: boolean | Prisma.YardDefaultArgs<ExtArgs>
   workItems?: boolean | Prisma.RFQ$workItemsArgs<ExtArgs>
   surveys?: boolean | Prisma.RFQ$surveysArgs<ExtArgs>
+  rfqresponses?: boolean | Prisma.RFQ$rfqresponsesArgs<ExtArgs>
   _count?: boolean | Prisma.RFQCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["rFQ"]>
 
 export type RFQSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  requesterId?: boolean
   vesselId?: boolean
   vesselName?: boolean
   imoNumber?: boolean
@@ -1222,6 +1412,7 @@ export type RFQSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extension
 
 export type RFQSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  requesterId?: boolean
   vesselId?: boolean
   vesselName?: boolean
   imoNumber?: boolean
@@ -1243,6 +1434,7 @@ export type RFQSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extension
 
 export type RFQSelectScalar = {
   id?: boolean
+  requesterId?: boolean
   vesselId?: boolean
   vesselName?: boolean
   imoNumber?: boolean
@@ -1261,11 +1453,12 @@ export type RFQSelectScalar = {
   updatedAt?: boolean
 }
 
-export type RFQOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "vesselId" | "vesselName" | "imoNumber" | "vesselType" | "yardId" | "loa" | "beam" | "draft" | "dwt" | "classSociety" | "dockingType" | "preferredStart" | "flexibilityDays" | "estimatedDuration" | "createdAt" | "updatedAt", ExtArgs["result"]["rFQ"]>
+export type RFQOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "requesterId" | "vesselId" | "vesselName" | "imoNumber" | "vesselType" | "yardId" | "loa" | "beam" | "draft" | "dwt" | "classSociety" | "dockingType" | "preferredStart" | "flexibilityDays" | "estimatedDuration" | "createdAt" | "updatedAt", ExtArgs["result"]["rFQ"]>
 export type RFQInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   yard?: boolean | Prisma.YardDefaultArgs<ExtArgs>
   workItems?: boolean | Prisma.RFQ$workItemsArgs<ExtArgs>
   surveys?: boolean | Prisma.RFQ$surveysArgs<ExtArgs>
+  rfqresponses?: boolean | Prisma.RFQ$rfqresponsesArgs<ExtArgs>
   _count?: boolean | Prisma.RFQCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type RFQIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1281,9 +1474,11 @@ export type $RFQPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     yard: Prisma.$YardPayload<ExtArgs>
     workItems: Prisma.$RFQWorkItemPayload<ExtArgs>[]
     surveys: Prisma.$RFQSurveyPayload<ExtArgs>[]
+    rfqresponses: Prisma.$RFQResponsePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    requesterId: string
     vesselId: string
     vesselName: string
     imoNumber: string
@@ -1697,6 +1892,7 @@ export interface Prisma__RFQClient<T, Null = never, ExtArgs extends runtime.Type
   yard<T extends Prisma.YardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.YardDefaultArgs<ExtArgs>>): Prisma.Prisma__YardClient<runtime.Types.Result.GetResult<Prisma.$YardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   workItems<T extends Prisma.RFQ$workItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQ$workItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RFQWorkItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   surveys<T extends Prisma.RFQ$surveysArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQ$surveysArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RFQSurveyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  rfqresponses<T extends Prisma.RFQ$rfqresponsesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RFQ$rfqresponsesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RFQResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1727,6 +1923,7 @@ export interface Prisma__RFQClient<T, Null = never, ExtArgs extends runtime.Type
  */
 export interface RFQFieldRefs {
   readonly id: Prisma.FieldRef<"RFQ", 'String'>
+  readonly requesterId: Prisma.FieldRef<"RFQ", 'String'>
   readonly vesselId: Prisma.FieldRef<"RFQ", 'String'>
   readonly vesselName: Prisma.FieldRef<"RFQ", 'String'>
   readonly imoNumber: Prisma.FieldRef<"RFQ", 'String'>
@@ -2189,6 +2386,30 @@ export type RFQ$surveysArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.RFQSurveyScalarFieldEnum | Prisma.RFQSurveyScalarFieldEnum[]
+}
+
+/**
+ * RFQ.rfqresponses
+ */
+export type RFQ$rfqresponsesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RFQResponse
+   */
+  select?: Prisma.RFQResponseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RFQResponse
+   */
+  omit?: Prisma.RFQResponseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RFQResponseInclude<ExtArgs> | null
+  where?: Prisma.RFQResponseWhereInput
+  orderBy?: Prisma.RFQResponseOrderByWithRelationInput | Prisma.RFQResponseOrderByWithRelationInput[]
+  cursor?: Prisma.RFQResponseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RFQResponseScalarFieldEnum | Prisma.RFQResponseScalarFieldEnum[]
 }
 
 /**
