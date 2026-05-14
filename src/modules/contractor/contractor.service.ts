@@ -82,4 +82,52 @@ export class ContractorService {
       };
     }
   }
+
+  async getContractorRequests(
+    contractorId: string,
+    page = 1,
+    limit = 12,
+    idsOnly = false,
+  ) {
+    const skip = (page - 1) * limit;
+
+    const [requests, total] = await Promise.all([
+      this.prisma.contractRequest.findMany({
+        where: { contractorId },
+        skip,
+        take: limit,
+        select: idsOnly ? { id: true } : undefined,
+      }),
+      this.prisma.contractRequest.count({
+        where: { contractorId },
+      }),
+    ]);
+
+    return {
+      data: idsOnly ? requests.map((req) => req.id) : requests,
+      total,
+      page,
+      limit,
+    };
+  }
+
+  async getJobIdsRequestedByContractor(contractorId: string) {
+    const requests = await this.prisma.contractRequest.findMany({
+      where: { contractorId },
+      select: {
+        workItem: true,
+        survey: true,
+      },
+    });
+
+    const workItemIds = requests
+      .filter((req) => req.workItem)
+      .map((req) => req.workItem?.id);
+
+    const surveyIds = requests
+      .filter((req) => req.survey)
+      .map((req) => req.survey?.id);
+
+    return [...workItemIds, ...surveyIds].filter((id): id is string => !!id);
+  }
 }

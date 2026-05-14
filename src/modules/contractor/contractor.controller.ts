@@ -28,4 +28,28 @@ export class ContractorController {
   ) {
     return this.contractorService.createContractRequest(dto, contractorId);
   }
+
+  @UseGuards(AuthorizeGuard)
+  @Authorize(GroupPolicy.REQUESTS)
+  @Get('requested-job-ids')
+  async getRequestedJobIds(@UserId() contractorId: string) {
+    return this.contractorService.getJobIdsRequestedByContractor(contractorId);
+  }
+
+  @UseGuards(AuthorizeGuard)
+  @Authorize(GroupPolicy.REQUESTS)
+  @Get('requests')
+  async getContractorRequests(
+    @UserId() contractorId: string,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+    @Query('idsOnly') idsOnly?: string,
+  ) {
+    return this.contractorService.getContractorRequests(
+      contractorId,
+      page ? parseInt(page, 10) : 1,
+      limit ? parseInt(limit, 10) : 12,
+      idsOnly === 'true',
+    );
+  }
 }
