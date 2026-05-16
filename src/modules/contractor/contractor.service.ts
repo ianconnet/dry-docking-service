@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/shared/prisma/prisma.service';
 import { CreateContractRequestDto } from './dtos/contract.dto';
+import { ContractRequestStatus } from 'prisma/generated/prisma/client/enums';
 
 @Injectable()
 export class ContractorService {
@@ -129,5 +130,90 @@ export class ContractorService {
       .map((req) => req.survey?.id);
 
     return [...workItemIds, ...surveyIds].filter((id): id is string => !!id);
+  }
+
+  async getYardOwnerContractRequests(
+    yardOwnerId: string,
+    page = 1,
+    limit = 12,
+  ) {
+    const skip = (page - 1) * limit;
+
+    const [requests, total] = await Promise.all([
+      this.prisma.contractRequest.findMany({
+        where: {
+          workItem: {
+            rfq: {
+              yard: {
+                publisher: yardOwnerId,
+              },
+            },
+          },
+        },
+        include: {
+          workItem: {
+            select: {
+              category: true,
+              description: true,
+            },
+          },
+          survey: {
+            select: {
+              type: true,
+              notes: true,
+            },
+          },
+        },
+        skip,
+        take: limit,
+      }),
+      this.prisma.contractRequest.count({
+        where: {
+          workItem: {
+            rfq: {
+              yard: {
+                publisher: yardOwnerId,
+              },
+            },
+          },
+        },
+      }),
+    ]);
+
+    return {
+      data: requests,
+      total,
+      page,
+      limit,
+    };
+  }
+
+  async updateContractRequestStatus(
+    requestId: string,
+    status: ContractRequestStatus,
+  ) {
+    try {
+      const updatedRequest = await this.prisma.contractRequest.update({
+        where: { id: requestId },
+        data: { status },
+      });
+
+      return {
+        success: true,
+        message: `Contract request ${status} successfully`,
+        data: updatedRequest.status,
+      };
+    } catch (error: unknown) {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+      console.log(
+        `ERROR updating contract request status to ${status}`,
+        errorMessage,
+      );
+      return {
+        success: false,
+        message: `Error updating contract request status to ${status}`,
+      };
+    }
   }
 }

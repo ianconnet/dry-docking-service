@@ -152,19 +152,6 @@ enum ContractStatus {
   cancelled
 }
 
-model Contract {
-  id          String   @id @default(uuid())
-  yardId      String
-  details     String
-  shipAgentId String
-  status      String   @default("pending")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  yard     Yard      @relation(fields: [yardId], references: [id])
-  invoices Invoice[]
-}
-
 enum ContractRequestStatus {
   pending
   accepted
@@ -183,6 +170,7 @@ model contractRequest {
   createdAt     DateTime              @default(now())
   rFQWorkItemId String?
   rFQSurveyId   String?
+  contracts     Contract[]
 }
 
 model Invoice {
@@ -217,4 +205,13 @@ model RFQResponse {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Contract {
+  id                String          @id @default(uuid())
+  contractRequestId String
+  contractRequest   contractRequest @relation(fields: [contractRequestId], references: [id])
+  yard              Yard?           @relation(fields: [yardId], references: [id])
+  yardId            String?
+  invoices          Invoice[]
 }
