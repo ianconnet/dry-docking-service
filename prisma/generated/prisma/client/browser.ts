@@ -38,11 +38,6 @@ export type RFQWorkItem = Prisma.RFQWorkItemModel
  */
 export type RFQSurvey = Prisma.RFQSurveyModel
 /**
- * Model Contract
- * 
- */
-export type Contract = Prisma.ContractModel
-/**
  * Model contractRequest
  * 
  */
@@ -57,3 +52,13 @@ export type Invoice = Prisma.InvoiceModel
  * 
  */
 export type RFQResponse = Prisma.RFQResponseModel
+/**
+ * Model Contract
+ * 
+ */
+export type Contract = Prisma.ContractModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel

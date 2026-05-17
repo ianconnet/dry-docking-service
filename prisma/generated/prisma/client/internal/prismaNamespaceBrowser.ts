@@ -55,10 +55,11 @@ export const ModelName = {
   RFQ: 'RFQ',
   RFQWorkItem: 'RFQWorkItem',
   RFQSurvey: 'RFQSurvey',
-  Contract: 'Contract',
   contractRequest: 'contractRequest',
   Invoice: 'Invoice',
-  RFQResponse: 'RFQResponse'
+  RFQResponse: 'RFQResponse',
+  Contract: 'Contract',
+  Notification: 'Notification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -144,19 +145,6 @@ export const RFQSurveyScalarFieldEnum = {
 export type RFQSurveyScalarFieldEnum = (typeof RFQSurveyScalarFieldEnum)[keyof typeof RFQSurveyScalarFieldEnum]
 
 
-export const ContractScalarFieldEnum = {
-  id: 'id',
-  yardId: 'yardId',
-  details: 'details',
-  shipAgentId: 'shipAgentId',
-  status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type ContractScalarFieldEnum = (typeof ContractScalarFieldEnum)[keyof typeof ContractScalarFieldEnum]
-
-
 export const ContractRequestScalarFieldEnum = {
   id: 'id',
   contractorId: 'contractorId',
@@ -196,6 +184,27 @@ export const RFQResponseScalarFieldEnum = {
 } as const
 
 export type RFQResponseScalarFieldEnum = (typeof RFQResponseScalarFieldEnum)[keyof typeof RFQResponseScalarFieldEnum]
+
+
+export const ContractScalarFieldEnum = {
+  id: 'id',
+  contractRequestId: 'contractRequestId',
+  yardId: 'yardId'
+} as const
+
+export type ContractScalarFieldEnum = (typeof ContractScalarFieldEnum)[keyof typeof ContractScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  message: 'message',
+  link: 'link',
+  read: 'read',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
 export const SortOrder = {

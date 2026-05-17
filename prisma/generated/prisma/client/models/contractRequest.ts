@@ -254,6 +254,7 @@ export type contractRequestWhereInput = {
   rFQSurveyId?: Prisma.StringNullableFilter<"contractRequest"> | string | null
   workItem?: Prisma.XOR<Prisma.RFQWorkItemNullableScalarRelationFilter, Prisma.RFQWorkItemWhereInput> | null
   survey?: Prisma.XOR<Prisma.RFQSurveyNullableScalarRelationFilter, Prisma.RFQSurveyWhereInput> | null
+  contracts?: Prisma.ContractListRelationFilter
 }
 
 export type contractRequestOrderByWithRelationInput = {
@@ -268,6 +269,7 @@ export type contractRequestOrderByWithRelationInput = {
   rFQSurveyId?: Prisma.SortOrderInput | Prisma.SortOrder
   workItem?: Prisma.RFQWorkItemOrderByWithRelationInput
   survey?: Prisma.RFQSurveyOrderByWithRelationInput
+  contracts?: Prisma.ContractOrderByRelationAggregateInput
 }
 
 export type contractRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -285,6 +287,7 @@ export type contractRequestWhereUniqueInput = Prisma.AtLeast<{
   rFQSurveyId?: Prisma.StringNullableFilter<"contractRequest"> | string | null
   workItem?: Prisma.XOR<Prisma.RFQWorkItemNullableScalarRelationFilter, Prisma.RFQWorkItemWhereInput> | null
   survey?: Prisma.XOR<Prisma.RFQSurveyNullableScalarRelationFilter, Prisma.RFQSurveyWhereInput> | null
+  contracts?: Prisma.ContractListRelationFilter
 }, "id">
 
 export type contractRequestOrderByWithAggregationInput = {
@@ -329,6 +332,7 @@ export type contractRequestCreateInput = {
   createdAt?: Date | string
   workItem?: Prisma.RFQWorkItemCreateNestedOneWithoutContractRequestsInput
   survey?: Prisma.RFQSurveyCreateNestedOneWithoutContractRequestsInput
+  contracts?: Prisma.ContractCreateNestedManyWithoutContractRequestInput
 }
 
 export type contractRequestUncheckedCreateInput = {
@@ -341,6 +345,7 @@ export type contractRequestUncheckedCreateInput = {
   createdAt?: Date | string
   rFQWorkItemId?: string | null
   rFQSurveyId?: string | null
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutContractRequestInput
 }
 
 export type contractRequestUpdateInput = {
@@ -353,6 +358,7 @@ export type contractRequestUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workItem?: Prisma.RFQWorkItemUpdateOneWithoutContractRequestsNestedInput
   survey?: Prisma.RFQSurveyUpdateOneWithoutContractRequestsNestedInput
+  contracts?: Prisma.ContractUpdateManyWithoutContractRequestNestedInput
 }
 
 export type contractRequestUncheckedUpdateInput = {
@@ -365,6 +371,7 @@ export type contractRequestUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rFQWorkItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   rFQSurveyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutContractRequestNestedInput
 }
 
 export type contractRequestCreateManyInput = {
@@ -455,6 +462,11 @@ export type contractRequestMinOrderByAggregateInput = {
 export type contractRequestSumOrderByAggregateInput = {
   minPrice?: Prisma.SortOrder
   maxPrice?: Prisma.SortOrder
+}
+
+export type ContractRequestScalarRelationFilter = {
+  is?: Prisma.contractRequestWhereInput
+  isNot?: Prisma.contractRequestWhereInput
 }
 
 export type contractRequestCreateNestedManyWithoutWorkItemInput = {
@@ -553,6 +565,20 @@ export type EnumContractRequestStatusFieldUpdateOperationsInput = {
   set?: $Enums.ContractRequestStatus
 }
 
+export type contractRequestCreateNestedOneWithoutContractsInput = {
+  create?: Prisma.XOR<Prisma.contractRequestCreateWithoutContractsInput, Prisma.contractRequestUncheckedCreateWithoutContractsInput>
+  connectOrCreate?: Prisma.contractRequestCreateOrConnectWithoutContractsInput
+  connect?: Prisma.contractRequestWhereUniqueInput
+}
+
+export type contractRequestUpdateOneRequiredWithoutContractsNestedInput = {
+  create?: Prisma.XOR<Prisma.contractRequestCreateWithoutContractsInput, Prisma.contractRequestUncheckedCreateWithoutContractsInput>
+  connectOrCreate?: Prisma.contractRequestCreateOrConnectWithoutContractsInput
+  upsert?: Prisma.contractRequestUpsertWithoutContractsInput
+  connect?: Prisma.contractRequestWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.contractRequestUpdateToOneWithWhereWithoutContractsInput, Prisma.contractRequestUpdateWithoutContractsInput>, Prisma.contractRequestUncheckedUpdateWithoutContractsInput>
+}
+
 export type contractRequestCreateWithoutWorkItemInput = {
   id?: string
   contractorId: string
@@ -562,6 +588,7 @@ export type contractRequestCreateWithoutWorkItemInput = {
   status?: $Enums.ContractRequestStatus
   createdAt?: Date | string
   survey?: Prisma.RFQSurveyCreateNestedOneWithoutContractRequestsInput
+  contracts?: Prisma.ContractCreateNestedManyWithoutContractRequestInput
 }
 
 export type contractRequestUncheckedCreateWithoutWorkItemInput = {
@@ -573,6 +600,7 @@ export type contractRequestUncheckedCreateWithoutWorkItemInput = {
   status?: $Enums.ContractRequestStatus
   createdAt?: Date | string
   rFQSurveyId?: string | null
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutContractRequestInput
 }
 
 export type contractRequestCreateOrConnectWithoutWorkItemInput = {
@@ -625,6 +653,7 @@ export type contractRequestCreateWithoutSurveyInput = {
   status?: $Enums.ContractRequestStatus
   createdAt?: Date | string
   workItem?: Prisma.RFQWorkItemCreateNestedOneWithoutContractRequestsInput
+  contracts?: Prisma.ContractCreateNestedManyWithoutContractRequestInput
 }
 
 export type contractRequestUncheckedCreateWithoutSurveyInput = {
@@ -636,6 +665,7 @@ export type contractRequestUncheckedCreateWithoutSurveyInput = {
   status?: $Enums.ContractRequestStatus
   createdAt?: Date | string
   rFQWorkItemId?: string | null
+  contracts?: Prisma.ContractUncheckedCreateNestedManyWithoutContractRequestInput
 }
 
 export type contractRequestCreateOrConnectWithoutSurveyInput = {
@@ -664,6 +694,70 @@ export type contractRequestUpdateManyWithWhereWithoutSurveyInput = {
   data: Prisma.XOR<Prisma.contractRequestUpdateManyMutationInput, Prisma.contractRequestUncheckedUpdateManyWithoutSurveyInput>
 }
 
+export type contractRequestCreateWithoutContractsInput = {
+  id?: string
+  contractorId: string
+  minPrice: number
+  maxPrice: number
+  startDate: string
+  status?: $Enums.ContractRequestStatus
+  createdAt?: Date | string
+  workItem?: Prisma.RFQWorkItemCreateNestedOneWithoutContractRequestsInput
+  survey?: Prisma.RFQSurveyCreateNestedOneWithoutContractRequestsInput
+}
+
+export type contractRequestUncheckedCreateWithoutContractsInput = {
+  id?: string
+  contractorId: string
+  minPrice: number
+  maxPrice: number
+  startDate: string
+  status?: $Enums.ContractRequestStatus
+  createdAt?: Date | string
+  rFQWorkItemId?: string | null
+  rFQSurveyId?: string | null
+}
+
+export type contractRequestCreateOrConnectWithoutContractsInput = {
+  where: Prisma.contractRequestWhereUniqueInput
+  create: Prisma.XOR<Prisma.contractRequestCreateWithoutContractsInput, Prisma.contractRequestUncheckedCreateWithoutContractsInput>
+}
+
+export type contractRequestUpsertWithoutContractsInput = {
+  update: Prisma.XOR<Prisma.contractRequestUpdateWithoutContractsInput, Prisma.contractRequestUncheckedUpdateWithoutContractsInput>
+  create: Prisma.XOR<Prisma.contractRequestCreateWithoutContractsInput, Prisma.contractRequestUncheckedCreateWithoutContractsInput>
+  where?: Prisma.contractRequestWhereInput
+}
+
+export type contractRequestUpdateToOneWithWhereWithoutContractsInput = {
+  where?: Prisma.contractRequestWhereInput
+  data: Prisma.XOR<Prisma.contractRequestUpdateWithoutContractsInput, Prisma.contractRequestUncheckedUpdateWithoutContractsInput>
+}
+
+export type contractRequestUpdateWithoutContractsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  contractorId?: Prisma.StringFieldUpdateOperationsInput | string
+  minPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  maxPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  startDate?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumContractRequestStatusFieldUpdateOperationsInput | $Enums.ContractRequestStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  workItem?: Prisma.RFQWorkItemUpdateOneWithoutContractRequestsNestedInput
+  survey?: Prisma.RFQSurveyUpdateOneWithoutContractRequestsNestedInput
+}
+
+export type contractRequestUncheckedUpdateWithoutContractsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  contractorId?: Prisma.StringFieldUpdateOperationsInput | string
+  minPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  maxPrice?: Prisma.FloatFieldUpdateOperationsInput | number
+  startDate?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumContractRequestStatusFieldUpdateOperationsInput | $Enums.ContractRequestStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rFQWorkItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  rFQSurveyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
 export type contractRequestCreateManyWorkItemInput = {
   id?: string
   contractorId: string
@@ -684,6 +778,7 @@ export type contractRequestUpdateWithoutWorkItemInput = {
   status?: Prisma.EnumContractRequestStatusFieldUpdateOperationsInput | $Enums.ContractRequestStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   survey?: Prisma.RFQSurveyUpdateOneWithoutContractRequestsNestedInput
+  contracts?: Prisma.ContractUpdateManyWithoutContractRequestNestedInput
 }
 
 export type contractRequestUncheckedUpdateWithoutWorkItemInput = {
@@ -695,6 +790,7 @@ export type contractRequestUncheckedUpdateWithoutWorkItemInput = {
   status?: Prisma.EnumContractRequestStatusFieldUpdateOperationsInput | $Enums.ContractRequestStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rFQSurveyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutContractRequestNestedInput
 }
 
 export type contractRequestUncheckedUpdateManyWithoutWorkItemInput = {
@@ -728,6 +824,7 @@ export type contractRequestUpdateWithoutSurveyInput = {
   status?: Prisma.EnumContractRequestStatusFieldUpdateOperationsInput | $Enums.ContractRequestStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   workItem?: Prisma.RFQWorkItemUpdateOneWithoutContractRequestsNestedInput
+  contracts?: Prisma.ContractUpdateManyWithoutContractRequestNestedInput
 }
 
 export type contractRequestUncheckedUpdateWithoutSurveyInput = {
@@ -739,6 +836,7 @@ export type contractRequestUncheckedUpdateWithoutSurveyInput = {
   status?: Prisma.EnumContractRequestStatusFieldUpdateOperationsInput | $Enums.ContractRequestStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rFQWorkItemId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contracts?: Prisma.ContractUncheckedUpdateManyWithoutContractRequestNestedInput
 }
 
 export type contractRequestUncheckedUpdateManyWithoutSurveyInput = {
@@ -753,6 +851,35 @@ export type contractRequestUncheckedUpdateManyWithoutSurveyInput = {
 }
 
 
+/**
+ * Count Type ContractRequestCountOutputType
+ */
+
+export type ContractRequestCountOutputType = {
+  contracts: number
+}
+
+export type ContractRequestCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  contracts?: boolean | ContractRequestCountOutputTypeCountContractsArgs
+}
+
+/**
+ * ContractRequestCountOutputType without action
+ */
+export type ContractRequestCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ContractRequestCountOutputType
+   */
+  select?: Prisma.ContractRequestCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ContractRequestCountOutputType without action
+ */
+export type ContractRequestCountOutputTypeCountContractsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ContractWhereInput
+}
+
 
 export type contractRequestSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -766,6 +893,8 @@ export type contractRequestSelect<ExtArgs extends runtime.Types.Extensions.Inter
   rFQSurveyId?: boolean
   workItem?: boolean | Prisma.contractRequest$workItemArgs<ExtArgs>
   survey?: boolean | Prisma.contractRequest$surveyArgs<ExtArgs>
+  contracts?: boolean | Prisma.contractRequest$contractsArgs<ExtArgs>
+  _count?: boolean | Prisma.ContractRequestCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contractRequest"]>
 
 export type contractRequestSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -812,6 +941,8 @@ export type contractRequestOmit<ExtArgs extends runtime.Types.Extensions.Interna
 export type contractRequestInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workItem?: boolean | Prisma.contractRequest$workItemArgs<ExtArgs>
   survey?: boolean | Prisma.contractRequest$surveyArgs<ExtArgs>
+  contracts?: boolean | Prisma.contractRequest$contractsArgs<ExtArgs>
+  _count?: boolean | Prisma.ContractRequestCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type contractRequestIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   workItem?: boolean | Prisma.contractRequest$workItemArgs<ExtArgs>
@@ -827,6 +958,7 @@ export type $contractRequestPayload<ExtArgs extends runtime.Types.Extensions.Int
   objects: {
     workItem: Prisma.$RFQWorkItemPayload<ExtArgs> | null
     survey: Prisma.$RFQSurveyPayload<ExtArgs> | null
+    contracts: Prisma.$ContractPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1234,6 +1366,7 @@ export interface Prisma__contractRequestClient<T, Null = never, ExtArgs extends 
   readonly [Symbol.toStringTag]: "PrismaPromise"
   workItem<T extends Prisma.contractRequest$workItemArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.contractRequest$workItemArgs<ExtArgs>>): Prisma.Prisma__RFQWorkItemClient<runtime.Types.Result.GetResult<Prisma.$RFQWorkItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   survey<T extends Prisma.contractRequest$surveyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.contractRequest$surveyArgs<ExtArgs>>): Prisma.Prisma__RFQSurveyClient<runtime.Types.Result.GetResult<Prisma.$RFQSurveyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  contracts<T extends Prisma.contractRequest$contractsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.contractRequest$contractsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1708,6 +1841,30 @@ export type contractRequest$surveyArgs<ExtArgs extends runtime.Types.Extensions.
    */
   include?: Prisma.RFQSurveyInclude<ExtArgs> | null
   where?: Prisma.RFQSurveyWhereInput
+}
+
+/**
+ * contractRequest.contracts
+ */
+export type contractRequest$contractsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Contract
+   */
+  select?: Prisma.ContractSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Contract
+   */
+  omit?: Prisma.ContractOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContractInclude<ExtArgs> | null
+  where?: Prisma.ContractWhereInput
+  orderBy?: Prisma.ContractOrderByWithRelationInput | Prisma.ContractOrderByWithRelationInput[]
+  cursor?: Prisma.ContractWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ContractScalarFieldEnum | Prisma.ContractScalarFieldEnum[]
 }
 
 /**

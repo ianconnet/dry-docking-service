@@ -357,16 +357,6 @@ export type InvoiceUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type InvoiceListRelationFilter = {
-  every?: Prisma.InvoiceWhereInput
-  some?: Prisma.InvoiceWhereInput
-  none?: Prisma.InvoiceWhereInput
-}
-
-export type InvoiceOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
-}
-
 export type InvoiceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   contractId?: Prisma.SortOrder
@@ -403,6 +393,16 @@ export type InvoiceMinOrderByAggregateInput = {
 
 export type InvoiceSumOrderByAggregateInput = {
   amount?: Prisma.SortOrder
+}
+
+export type InvoiceListRelationFilter = {
+  every?: Prisma.InvoiceWhereInput
+  some?: Prisma.InvoiceWhereInput
+  none?: Prisma.InvoiceWhereInput
+}
+
+export type InvoiceOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type InvoiceCreateNestedManyWithoutContractInput = {

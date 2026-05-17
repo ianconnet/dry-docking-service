@@ -2,10 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/shared/prisma/prisma.service';
 import { CreateContractRequestDto } from './dtos/contract.dto';
 import { ContractRequestStatus } from 'prisma/generated/prisma/client/enums';
+import { NotificationService } from '../notification/notification.service';
 
 @Injectable()
 export class ContractorService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly notification: NotificationService,
+  ) {}
 
   async getContractAbleItems(page = 1, limit = 12) {
     const skip = (page - 1) * (limit / 2);
@@ -196,6 +200,11 @@ export class ContractorService {
       const updatedRequest = await this.prisma.contractRequest.update({
         where: { id: requestId },
         data: { status },
+      });
+
+      await this.notification.create({
+        userId: updatedRequest.contractorId,
+        message: `Your contract for request: ${updatedRequest.id} has been ${status.toLowerCase()}`,
       });
 
       return {

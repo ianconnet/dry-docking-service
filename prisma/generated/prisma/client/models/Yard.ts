@@ -390,6 +390,11 @@ export type YardScalarRelationFilter = {
   isNot?: Prisma.YardWhereInput
 }
 
+export type YardNullableScalarRelationFilter = {
+  is?: Prisma.YardWhereInput | null
+  isNot?: Prisma.YardWhereInput | null
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -426,10 +431,12 @@ export type YardCreateNestedOneWithoutContractsInput = {
   connect?: Prisma.YardWhereUniqueInput
 }
 
-export type YardUpdateOneRequiredWithoutContractsNestedInput = {
+export type YardUpdateOneWithoutContractsNestedInput = {
   create?: Prisma.XOR<Prisma.YardCreateWithoutContractsInput, Prisma.YardUncheckedCreateWithoutContractsInput>
   connectOrCreate?: Prisma.YardCreateOrConnectWithoutContractsInput
   upsert?: Prisma.YardUpsertWithoutContractsInput
+  disconnect?: Prisma.YardWhereInput | boolean
+  delete?: Prisma.YardWhereInput | boolean
   connect?: Prisma.YardWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.YardUpdateToOneWithWhereWithoutContractsInput, Prisma.YardUpdateWithoutContractsInput>, Prisma.YardUncheckedUpdateWithoutContractsInput>
 }

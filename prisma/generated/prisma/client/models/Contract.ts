@@ -26,64 +26,40 @@ export type AggregateContract = {
 
 export type ContractMinAggregateOutputType = {
   id: string | null
+  contractRequestId: string | null
   yardId: string | null
-  details: string | null
-  shipAgentId: string | null
-  status: string | null
-  createdAt: Date | null
-  updatedAt: Date | null
 }
 
 export type ContractMaxAggregateOutputType = {
   id: string | null
+  contractRequestId: string | null
   yardId: string | null
-  details: string | null
-  shipAgentId: string | null
-  status: string | null
-  createdAt: Date | null
-  updatedAt: Date | null
 }
 
 export type ContractCountAggregateOutputType = {
   id: number
+  contractRequestId: number
   yardId: number
-  details: number
-  shipAgentId: number
-  status: number
-  createdAt: number
-  updatedAt: number
   _all: number
 }
 
 
 export type ContractMinAggregateInputType = {
   id?: true
+  contractRequestId?: true
   yardId?: true
-  details?: true
-  shipAgentId?: true
-  status?: true
-  createdAt?: true
-  updatedAt?: true
 }
 
 export type ContractMaxAggregateInputType = {
   id?: true
+  contractRequestId?: true
   yardId?: true
-  details?: true
-  shipAgentId?: true
-  status?: true
-  createdAt?: true
-  updatedAt?: true
 }
 
 export type ContractCountAggregateInputType = {
   id?: true
+  contractRequestId?: true
   yardId?: true
-  details?: true
-  shipAgentId?: true
-  status?: true
-  createdAt?: true
-  updatedAt?: true
   _all?: true
 }
 
@@ -161,12 +137,8 @@ export type ContractGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type ContractGroupByOutputType = {
   id: string
-  yardId: string
-  details: string
-  shipAgentId: string
-  status: string
-  createdAt: Date
-  updatedAt: Date
+  contractRequestId: string
+  yardId: string | null
   _count: ContractCountAggregateOutputType | null
   _min: ContractMinAggregateOutputType | null
   _max: ContractMaxAggregateOutputType | null
@@ -192,24 +164,18 @@ export type ContractWhereInput = {
   OR?: Prisma.ContractWhereInput[]
   NOT?: Prisma.ContractWhereInput | Prisma.ContractWhereInput[]
   id?: Prisma.StringFilter<"Contract"> | string
-  yardId?: Prisma.StringFilter<"Contract"> | string
-  details?: Prisma.StringFilter<"Contract"> | string
-  shipAgentId?: Prisma.StringFilter<"Contract"> | string
-  status?: Prisma.StringFilter<"Contract"> | string
-  createdAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
-  yard?: Prisma.XOR<Prisma.YardScalarRelationFilter, Prisma.YardWhereInput>
+  contractRequestId?: Prisma.StringFilter<"Contract"> | string
+  yardId?: Prisma.StringNullableFilter<"Contract"> | string | null
+  contractRequest?: Prisma.XOR<Prisma.ContractRequestScalarRelationFilter, Prisma.contractRequestWhereInput>
+  yard?: Prisma.XOR<Prisma.YardNullableScalarRelationFilter, Prisma.YardWhereInput> | null
   invoices?: Prisma.InvoiceListRelationFilter
 }
 
 export type ContractOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  yardId?: Prisma.SortOrder
-  details?: Prisma.SortOrder
-  shipAgentId?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
+  contractRequestId?: Prisma.SortOrder
+  yardId?: Prisma.SortOrderInput | Prisma.SortOrder
+  contractRequest?: Prisma.contractRequestOrderByWithRelationInput
   yard?: Prisma.YardOrderByWithRelationInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
 }
@@ -219,24 +185,17 @@ export type ContractWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ContractWhereInput | Prisma.ContractWhereInput[]
   OR?: Prisma.ContractWhereInput[]
   NOT?: Prisma.ContractWhereInput | Prisma.ContractWhereInput[]
-  yardId?: Prisma.StringFilter<"Contract"> | string
-  details?: Prisma.StringFilter<"Contract"> | string
-  shipAgentId?: Prisma.StringFilter<"Contract"> | string
-  status?: Prisma.StringFilter<"Contract"> | string
-  createdAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
-  yard?: Prisma.XOR<Prisma.YardScalarRelationFilter, Prisma.YardWhereInput>
+  contractRequestId?: Prisma.StringFilter<"Contract"> | string
+  yardId?: Prisma.StringNullableFilter<"Contract"> | string | null
+  contractRequest?: Prisma.XOR<Prisma.ContractRequestScalarRelationFilter, Prisma.contractRequestWhereInput>
+  yard?: Prisma.XOR<Prisma.YardNullableScalarRelationFilter, Prisma.YardWhereInput> | null
   invoices?: Prisma.InvoiceListRelationFilter
 }, "id">
 
 export type ContractOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  yardId?: Prisma.SortOrder
-  details?: Prisma.SortOrder
-  shipAgentId?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
+  contractRequestId?: Prisma.SortOrder
+  yardId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ContractCountOrderByAggregateInput
   _max?: Prisma.ContractMaxOrderByAggregateInput
   _min?: Prisma.ContractMinOrderByAggregateInput
@@ -247,85 +206,52 @@ export type ContractScalarWhereWithAggregatesInput = {
   OR?: Prisma.ContractScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ContractScalarWhereWithAggregatesInput | Prisma.ContractScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Contract"> | string
-  yardId?: Prisma.StringWithAggregatesFilter<"Contract"> | string
-  details?: Prisma.StringWithAggregatesFilter<"Contract"> | string
-  shipAgentId?: Prisma.StringWithAggregatesFilter<"Contract"> | string
-  status?: Prisma.StringWithAggregatesFilter<"Contract"> | string
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Contract"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Contract"> | Date | string
+  contractRequestId?: Prisma.StringWithAggregatesFilter<"Contract"> | string
+  yardId?: Prisma.StringNullableWithAggregatesFilter<"Contract"> | string | null
 }
 
 export type ContractCreateInput = {
   id?: string
-  details: string
-  shipAgentId: string
-  status?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  yard: Prisma.YardCreateNestedOneWithoutContractsInput
+  contractRequest: Prisma.contractRequestCreateNestedOneWithoutContractsInput
+  yard?: Prisma.YardCreateNestedOneWithoutContractsInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutContractInput
 }
 
 export type ContractUncheckedCreateInput = {
   id?: string
-  yardId: string
-  details: string
-  shipAgentId: string
-  status?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
+  contractRequestId: string
+  yardId?: string | null
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutContractInput
 }
 
 export type ContractUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  details?: Prisma.StringFieldUpdateOperationsInput | string
-  shipAgentId?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  yard?: Prisma.YardUpdateOneRequiredWithoutContractsNestedInput
+  contractRequest?: Prisma.contractRequestUpdateOneRequiredWithoutContractsNestedInput
+  yard?: Prisma.YardUpdateOneWithoutContractsNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  yardId?: Prisma.StringFieldUpdateOperationsInput | string
-  details?: Prisma.StringFieldUpdateOperationsInput | string
-  shipAgentId?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractRequestId?: Prisma.StringFieldUpdateOperationsInput | string
+  yardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutContractNestedInput
 }
 
 export type ContractCreateManyInput = {
   id?: string
-  yardId: string
-  details: string
-  shipAgentId: string
-  status?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
+  contractRequestId: string
+  yardId?: string | null
 }
 
 export type ContractUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  details?: Prisma.StringFieldUpdateOperationsInput | string
-  shipAgentId?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ContractUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  yardId?: Prisma.StringFieldUpdateOperationsInput | string
-  details?: Prisma.StringFieldUpdateOperationsInput | string
-  shipAgentId?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractRequestId?: Prisma.StringFieldUpdateOperationsInput | string
+  yardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ContractListRelationFilter = {
@@ -338,39 +264,27 @@ export type ContractOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type ContractScalarRelationFilter = {
+  is?: Prisma.ContractWhereInput
+  isNot?: Prisma.ContractWhereInput
+}
+
 export type ContractCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  contractRequestId?: Prisma.SortOrder
   yardId?: Prisma.SortOrder
-  details?: Prisma.SortOrder
-  shipAgentId?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
 }
 
 export type ContractMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  contractRequestId?: Prisma.SortOrder
   yardId?: Prisma.SortOrder
-  details?: Prisma.SortOrder
-  shipAgentId?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
 }
 
 export type ContractMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  contractRequestId?: Prisma.SortOrder
   yardId?: Prisma.SortOrder
-  details?: Prisma.SortOrder
-  shipAgentId?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-  updatedAt?: Prisma.SortOrder
-}
-
-export type ContractScalarRelationFilter = {
-  is?: Prisma.ContractWhereInput
-  isNot?: Prisma.ContractWhereInput
 }
 
 export type ContractCreateNestedManyWithoutYardInput = {
@@ -415,6 +329,48 @@ export type ContractUncheckedUpdateManyWithoutYardNestedInput = {
   deleteMany?: Prisma.ContractScalarWhereInput | Prisma.ContractScalarWhereInput[]
 }
 
+export type ContractCreateNestedManyWithoutContractRequestInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutContractRequestInput, Prisma.ContractUncheckedCreateWithoutContractRequestInput> | Prisma.ContractCreateWithoutContractRequestInput[] | Prisma.ContractUncheckedCreateWithoutContractRequestInput[]
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutContractRequestInput | Prisma.ContractCreateOrConnectWithoutContractRequestInput[]
+  createMany?: Prisma.ContractCreateManyContractRequestInputEnvelope
+  connect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+}
+
+export type ContractUncheckedCreateNestedManyWithoutContractRequestInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutContractRequestInput, Prisma.ContractUncheckedCreateWithoutContractRequestInput> | Prisma.ContractCreateWithoutContractRequestInput[] | Prisma.ContractUncheckedCreateWithoutContractRequestInput[]
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutContractRequestInput | Prisma.ContractCreateOrConnectWithoutContractRequestInput[]
+  createMany?: Prisma.ContractCreateManyContractRequestInputEnvelope
+  connect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+}
+
+export type ContractUpdateManyWithoutContractRequestNestedInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutContractRequestInput, Prisma.ContractUncheckedCreateWithoutContractRequestInput> | Prisma.ContractCreateWithoutContractRequestInput[] | Prisma.ContractUncheckedCreateWithoutContractRequestInput[]
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutContractRequestInput | Prisma.ContractCreateOrConnectWithoutContractRequestInput[]
+  upsert?: Prisma.ContractUpsertWithWhereUniqueWithoutContractRequestInput | Prisma.ContractUpsertWithWhereUniqueWithoutContractRequestInput[]
+  createMany?: Prisma.ContractCreateManyContractRequestInputEnvelope
+  set?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  disconnect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  delete?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  connect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  update?: Prisma.ContractUpdateWithWhereUniqueWithoutContractRequestInput | Prisma.ContractUpdateWithWhereUniqueWithoutContractRequestInput[]
+  updateMany?: Prisma.ContractUpdateManyWithWhereWithoutContractRequestInput | Prisma.ContractUpdateManyWithWhereWithoutContractRequestInput[]
+  deleteMany?: Prisma.ContractScalarWhereInput | Prisma.ContractScalarWhereInput[]
+}
+
+export type ContractUncheckedUpdateManyWithoutContractRequestNestedInput = {
+  create?: Prisma.XOR<Prisma.ContractCreateWithoutContractRequestInput, Prisma.ContractUncheckedCreateWithoutContractRequestInput> | Prisma.ContractCreateWithoutContractRequestInput[] | Prisma.ContractUncheckedCreateWithoutContractRequestInput[]
+  connectOrCreate?: Prisma.ContractCreateOrConnectWithoutContractRequestInput | Prisma.ContractCreateOrConnectWithoutContractRequestInput[]
+  upsert?: Prisma.ContractUpsertWithWhereUniqueWithoutContractRequestInput | Prisma.ContractUpsertWithWhereUniqueWithoutContractRequestInput[]
+  createMany?: Prisma.ContractCreateManyContractRequestInputEnvelope
+  set?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  disconnect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  delete?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  connect?: Prisma.ContractWhereUniqueInput | Prisma.ContractWhereUniqueInput[]
+  update?: Prisma.ContractUpdateWithWhereUniqueWithoutContractRequestInput | Prisma.ContractUpdateWithWhereUniqueWithoutContractRequestInput[]
+  updateMany?: Prisma.ContractUpdateManyWithWhereWithoutContractRequestInput | Prisma.ContractUpdateManyWithWhereWithoutContractRequestInput[]
+  deleteMany?: Prisma.ContractScalarWhereInput | Prisma.ContractScalarWhereInput[]
+}
+
 export type ContractCreateNestedOneWithoutInvoicesInput = {
   create?: Prisma.XOR<Prisma.ContractCreateWithoutInvoicesInput, Prisma.ContractUncheckedCreateWithoutInvoicesInput>
   connectOrCreate?: Prisma.ContractCreateOrConnectWithoutInvoicesInput
@@ -431,21 +387,13 @@ export type ContractUpdateOneRequiredWithoutInvoicesNestedInput = {
 
 export type ContractCreateWithoutYardInput = {
   id?: string
-  details: string
-  shipAgentId: string
-  status?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
+  contractRequest: Prisma.contractRequestCreateNestedOneWithoutContractsInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutContractInput
 }
 
 export type ContractUncheckedCreateWithoutYardInput = {
   id?: string
-  details: string
-  shipAgentId: string
-  status?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
+  contractRequestId: string
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutContractInput
 }
 
@@ -480,32 +428,58 @@ export type ContractScalarWhereInput = {
   OR?: Prisma.ContractScalarWhereInput[]
   NOT?: Prisma.ContractScalarWhereInput | Prisma.ContractScalarWhereInput[]
   id?: Prisma.StringFilter<"Contract"> | string
-  yardId?: Prisma.StringFilter<"Contract"> | string
-  details?: Prisma.StringFilter<"Contract"> | string
-  shipAgentId?: Prisma.StringFilter<"Contract"> | string
-  status?: Prisma.StringFilter<"Contract"> | string
-  createdAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Contract"> | Date | string
+  contractRequestId?: Prisma.StringFilter<"Contract"> | string
+  yardId?: Prisma.StringNullableFilter<"Contract"> | string | null
+}
+
+export type ContractCreateWithoutContractRequestInput = {
+  id?: string
+  yard?: Prisma.YardCreateNestedOneWithoutContractsInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutContractInput
+}
+
+export type ContractUncheckedCreateWithoutContractRequestInput = {
+  id?: string
+  yardId?: string | null
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutContractInput
+}
+
+export type ContractCreateOrConnectWithoutContractRequestInput = {
+  where: Prisma.ContractWhereUniqueInput
+  create: Prisma.XOR<Prisma.ContractCreateWithoutContractRequestInput, Prisma.ContractUncheckedCreateWithoutContractRequestInput>
+}
+
+export type ContractCreateManyContractRequestInputEnvelope = {
+  data: Prisma.ContractCreateManyContractRequestInput | Prisma.ContractCreateManyContractRequestInput[]
+  skipDuplicates?: boolean
+}
+
+export type ContractUpsertWithWhereUniqueWithoutContractRequestInput = {
+  where: Prisma.ContractWhereUniqueInput
+  update: Prisma.XOR<Prisma.ContractUpdateWithoutContractRequestInput, Prisma.ContractUncheckedUpdateWithoutContractRequestInput>
+  create: Prisma.XOR<Prisma.ContractCreateWithoutContractRequestInput, Prisma.ContractUncheckedCreateWithoutContractRequestInput>
+}
+
+export type ContractUpdateWithWhereUniqueWithoutContractRequestInput = {
+  where: Prisma.ContractWhereUniqueInput
+  data: Prisma.XOR<Prisma.ContractUpdateWithoutContractRequestInput, Prisma.ContractUncheckedUpdateWithoutContractRequestInput>
+}
+
+export type ContractUpdateManyWithWhereWithoutContractRequestInput = {
+  where: Prisma.ContractScalarWhereInput
+  data: Prisma.XOR<Prisma.ContractUpdateManyMutationInput, Prisma.ContractUncheckedUpdateManyWithoutContractRequestInput>
 }
 
 export type ContractCreateWithoutInvoicesInput = {
   id?: string
-  details: string
-  shipAgentId: string
-  status?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  yard: Prisma.YardCreateNestedOneWithoutContractsInput
+  contractRequest: Prisma.contractRequestCreateNestedOneWithoutContractsInput
+  yard?: Prisma.YardCreateNestedOneWithoutContractsInput
 }
 
 export type ContractUncheckedCreateWithoutInvoicesInput = {
   id?: string
-  yardId: string
-  details: string
-  shipAgentId: string
-  status?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
+  contractRequestId: string
+  yardId?: string | null
 }
 
 export type ContractCreateOrConnectWithoutInvoicesInput = {
@@ -526,60 +500,58 @@ export type ContractUpdateToOneWithWhereWithoutInvoicesInput = {
 
 export type ContractUpdateWithoutInvoicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  details?: Prisma.StringFieldUpdateOperationsInput | string
-  shipAgentId?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  yard?: Prisma.YardUpdateOneRequiredWithoutContractsNestedInput
+  contractRequest?: Prisma.contractRequestUpdateOneRequiredWithoutContractsNestedInput
+  yard?: Prisma.YardUpdateOneWithoutContractsNestedInput
 }
 
 export type ContractUncheckedUpdateWithoutInvoicesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  yardId?: Prisma.StringFieldUpdateOperationsInput | string
-  details?: Prisma.StringFieldUpdateOperationsInput | string
-  shipAgentId?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractRequestId?: Prisma.StringFieldUpdateOperationsInput | string
+  yardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ContractCreateManyYardInput = {
   id?: string
-  details: string
-  shipAgentId: string
-  status?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
+  contractRequestId: string
 }
 
 export type ContractUpdateWithoutYardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  details?: Prisma.StringFieldUpdateOperationsInput | string
-  shipAgentId?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractRequest?: Prisma.contractRequestUpdateOneRequiredWithoutContractsNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateWithoutYardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  details?: Prisma.StringFieldUpdateOperationsInput | string
-  shipAgentId?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractRequestId?: Prisma.StringFieldUpdateOperationsInput | string
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutContractNestedInput
 }
 
 export type ContractUncheckedUpdateManyWithoutYardInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  details?: Prisma.StringFieldUpdateOperationsInput | string
-  shipAgentId?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contractRequestId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type ContractCreateManyContractRequestInput = {
+  id?: string
+  yardId?: string | null
+}
+
+export type ContractUpdateWithoutContractRequestInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  yard?: Prisma.YardUpdateOneWithoutContractsNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutContractNestedInput
+}
+
+export type ContractUncheckedUpdateWithoutContractRequestInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  yardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutContractNestedInput
+}
+
+export type ContractUncheckedUpdateManyWithoutContractRequestInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  yardId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -615,76 +587,63 @@ export type ContractCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Typ
 
 export type ContractSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  contractRequestId?: boolean
   yardId?: boolean
-  details?: boolean
-  shipAgentId?: boolean
-  status?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
-  yard?: boolean | Prisma.YardDefaultArgs<ExtArgs>
+  contractRequest?: boolean | Prisma.contractRequestDefaultArgs<ExtArgs>
+  yard?: boolean | Prisma.Contract$yardArgs<ExtArgs>
   invoices?: boolean | Prisma.Contract$invoicesArgs<ExtArgs>
   _count?: boolean | Prisma.ContractCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contract"]>
 
 export type ContractSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  contractRequestId?: boolean
   yardId?: boolean
-  details?: boolean
-  shipAgentId?: boolean
-  status?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
-  yard?: boolean | Prisma.YardDefaultArgs<ExtArgs>
+  contractRequest?: boolean | Prisma.contractRequestDefaultArgs<ExtArgs>
+  yard?: boolean | Prisma.Contract$yardArgs<ExtArgs>
 }, ExtArgs["result"]["contract"]>
 
 export type ContractSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  contractRequestId?: boolean
   yardId?: boolean
-  details?: boolean
-  shipAgentId?: boolean
-  status?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
-  yard?: boolean | Prisma.YardDefaultArgs<ExtArgs>
+  contractRequest?: boolean | Prisma.contractRequestDefaultArgs<ExtArgs>
+  yard?: boolean | Prisma.Contract$yardArgs<ExtArgs>
 }, ExtArgs["result"]["contract"]>
 
 export type ContractSelectScalar = {
   id?: boolean
+  contractRequestId?: boolean
   yardId?: boolean
-  details?: boolean
-  shipAgentId?: boolean
-  status?: boolean
-  createdAt?: boolean
-  updatedAt?: boolean
 }
 
-export type ContractOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "yardId" | "details" | "shipAgentId" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["contract"]>
+export type ContractOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "contractRequestId" | "yardId", ExtArgs["result"]["contract"]>
 export type ContractInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  yard?: boolean | Prisma.YardDefaultArgs<ExtArgs>
+  contractRequest?: boolean | Prisma.contractRequestDefaultArgs<ExtArgs>
+  yard?: boolean | Prisma.Contract$yardArgs<ExtArgs>
   invoices?: boolean | Prisma.Contract$invoicesArgs<ExtArgs>
   _count?: boolean | Prisma.ContractCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ContractIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  yard?: boolean | Prisma.YardDefaultArgs<ExtArgs>
+  contractRequest?: boolean | Prisma.contractRequestDefaultArgs<ExtArgs>
+  yard?: boolean | Prisma.Contract$yardArgs<ExtArgs>
 }
 export type ContractIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  yard?: boolean | Prisma.YardDefaultArgs<ExtArgs>
+  contractRequest?: boolean | Prisma.contractRequestDefaultArgs<ExtArgs>
+  yard?: boolean | Prisma.Contract$yardArgs<ExtArgs>
 }
 
 export type $ContractPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Contract"
   objects: {
-    yard: Prisma.$YardPayload<ExtArgs>
+    contractRequest: Prisma.$contractRequestPayload<ExtArgs>
+    yard: Prisma.$YardPayload<ExtArgs> | null
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    yardId: string
-    details: string
-    shipAgentId: string
-    status: string
-    createdAt: Date
-    updatedAt: Date
+    contractRequestId: string
+    yardId: string | null
   }, ExtArgs["result"]["contract"]>
   composites: {}
 }
@@ -1079,7 +1038,8 @@ readonly fields: ContractFieldRefs;
  */
 export interface Prisma__ContractClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  yard<T extends Prisma.YardDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.YardDefaultArgs<ExtArgs>>): Prisma.Prisma__YardClient<runtime.Types.Result.GetResult<Prisma.$YardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  contractRequest<T extends Prisma.contractRequestDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.contractRequestDefaultArgs<ExtArgs>>): Prisma.Prisma__contractRequestClient<runtime.Types.Result.GetResult<Prisma.$contractRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  yard<T extends Prisma.Contract$yardArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contract$yardArgs<ExtArgs>>): Prisma.Prisma__YardClient<runtime.Types.Result.GetResult<Prisma.$YardPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   invoices<T extends Prisma.Contract$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contract$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1111,12 +1071,8 @@ export interface Prisma__ContractClient<T, Null = never, ExtArgs extends runtime
  */
 export interface ContractFieldRefs {
   readonly id: Prisma.FieldRef<"Contract", 'String'>
+  readonly contractRequestId: Prisma.FieldRef<"Contract", 'String'>
   readonly yardId: Prisma.FieldRef<"Contract", 'String'>
-  readonly details: Prisma.FieldRef<"Contract", 'String'>
-  readonly shipAgentId: Prisma.FieldRef<"Contract", 'String'>
-  readonly status: Prisma.FieldRef<"Contract", 'String'>
-  readonly createdAt: Prisma.FieldRef<"Contract", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"Contract", 'DateTime'>
 }
     
 
@@ -1515,6 +1471,25 @@ export type ContractDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Contracts to delete.
    */
   limit?: number
+}
+
+/**
+ * Contract.yard
+ */
+export type Contract$yardArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Yard
+   */
+  select?: Prisma.YardSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Yard
+   */
+  omit?: Prisma.YardOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.YardInclude<ExtArgs> | null
+  where?: Prisma.YardWhereInput
 }
 
 /**
